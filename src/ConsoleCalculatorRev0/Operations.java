@@ -1,15 +1,17 @@
-package ConsoleCalculator;
+package ConsoleCalculatorRev0;
 
 import java.time.LocalDate;
 
 public class Operations {
+
+
     //Variables
     private double num1 = 2;
     private double num2 = 5;
     private String action = "mul";
     private double result = 0;
-
     LocalDate createdDate;
+
 
     //Constructor with three parameters
     public Operations(double num1, double num2, String action) {
@@ -28,7 +30,6 @@ public class Operations {
 
 
 //Getters and setters
-
 
     public double getNum1() {
         return num1;
