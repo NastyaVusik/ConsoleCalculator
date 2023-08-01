@@ -9,7 +9,7 @@ public class ConsoleCalculator {
     double num2;
     String action;
     double result;
-    LocalDate createdDate;
+    LocalDate createdDate = LocalDate.now();
 
 //    public ConsoleCalculator(double num1, double num2, String action) {
 //        this.num1 = num1;
@@ -35,27 +35,23 @@ public class ConsoleCalculator {
         switch (action) {
             case ("sum"):
                 double res1 = num1 + num2;
-                fileHistory.writeHistory(num1, num2, action, res1);
+                fileHistory.writeHistory(num1, num2, action, res1, createdDate);
                 return res1;
-            break;
 
             case ("deduct"):
                 double res2 = num1 - num2;
-                fileHistory.writeHistory(num1, num2, action, res2);
+                fileHistory.writeHistory(num1, num2, action, res2, createdDate);
                 return res2;
-            break;
 
             case ("mult"):
                 double res3 = num1 * num2;
-                fileHistory.writeHistory(num1, num2, action, res3);
+                fileHistory.writeHistory(num1, num2, action, res3, createdDate);
                 return res3;
-            break;
 
             case ("divide"):
                 double res4 = num1 / num2;
-                fileHistory.writeHistory(num1, num2, action, res4);
+                fileHistory.writeHistory(num1, num2, action, res4, createdDate);
                 return res4;
-            break;
         }
         return 0;
     }
@@ -93,6 +89,14 @@ public class ConsoleCalculator {
 
     public void setResult(double result) {
         this.result = result;
+    }
+
+    public LocalDate getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDate createdDate) {
+        this.createdDate = createdDate;
     }
 
     @Override
