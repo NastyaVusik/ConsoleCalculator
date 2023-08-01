@@ -30,7 +30,7 @@ public class ConsoleCalculator {
 
 
     //Create object, which belongs to class InMemoryHistory
-    History inMemoryHistory = new InMemoryHistory();
+    InMemoryHistory inMemoryHistory = new InMemoryHistory();
 
 
     //Method for realisation of operations with numbers
@@ -43,7 +43,7 @@ public class ConsoleCalculator {
 
                 fileHistory.writeHistory(calcOperation1);
                 inMemoryHistory.writeHistory(calcOperation1);
-               inMemoryHistory.toString();
+                inMemoryHistory.printArrayList();
                 return res1;
 
             case ("deduct"):
@@ -52,6 +52,7 @@ public class ConsoleCalculator {
 
                 fileHistory.writeHistory(calcOperation2);
                 inMemoryHistory.writeHistory(calcOperation2);
+                inMemoryHistory.printArrayList();
                 return res2;
 
             case ("mult"):
@@ -60,6 +61,7 @@ public class ConsoleCalculator {
 
                 fileHistory.writeHistory(calcOperation3);
                 inMemoryHistory.writeHistory(calcOperation3);
+                inMemoryHistory.printArrayList();
                 return res3;
 
             case ("divide"):
@@ -68,6 +70,7 @@ public class ConsoleCalculator {
 
                 fileHistory.writeHistory(calcOperation4);
                 inMemoryHistory.writeHistory(calcOperation4);
+                inMemoryHistory.printArrayList();
                 return res4;
         }
         return 0;
