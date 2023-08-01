@@ -9,35 +9,27 @@ import java.io.IOException;
 public class MainCalculation {
     public static void main(String[] args) {
 
-        //Create object of calculator
+        //Create object of class ConsoleCalculator
         ConsoleCalculator consoleCalculator = new ConsoleCalculator();
 
+        //Create object of class ConsoleReader
+        ConsoleReader consoleReader = new ConsoleReader();
+
        System.out.print("Enter the number num1: ");
-        double num1 = readNumbers();
+        double num1 = consoleReader.readNumbers();
 
         System.out.print("Enter the number num2: ");
-        double num2 = readNumbers();
+        double num2 = consoleReader.readNumbers();
 
         System.out.print("Enter the operation with this numbers: ");
-        String action = readAction();
-        double result = consoleCalculator.calculateResult(num1, num2, action);
-        System.out.println("Calculate result: " + result);
-        writeHistory(num1, num2, action, result);
-    }
-        //Write history of calculations
+        String action = consoleReader.readAction();
 
-        static void writeHistory(double num1, double num2; String action; double result)
-    {
-        File file = new File("history.txt");
-        try {
-            FileWriter fileWriter = new FileWriter(file, true);
-            fileWriter.write("num1: " + num1 + " num2: " + num2 + " action: " + action + " =result: " + result);
-            fileWriter.write(10);
-            fileWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        double result = consoleCalculator.calculateResult(num1, num2, action);
+        System.out.println("Result of calculation: " + result);
     }
+
+
 
 
 
