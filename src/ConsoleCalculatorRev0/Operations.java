@@ -6,10 +6,10 @@ public class Operations {
 
 
     //Variables
-    private double num1 = 2;
-    private double num2 = 5;
-    private String action = "mul";
-    private double result = 0;
+     double num1 = readNumbers();
+     double num2 = readNumbers();
+     String action = readAction();
+     double result = 0;
     LocalDate createdDate;
 
 
