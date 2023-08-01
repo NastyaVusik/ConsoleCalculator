@@ -2,7 +2,7 @@ package ConsoleCalculatorRev0;
 
 import java.util.Scanner;
 
-public class ConsoleReader implements IFScanReader{
+public class ConsoleReader implements ScanReader {
 
    //Initialisation of scanner
     Scanner scanReader = new Scanner(System.in);

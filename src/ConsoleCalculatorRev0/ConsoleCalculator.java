@@ -4,11 +4,11 @@ import java.time.LocalDate;
 
 public class ConsoleCalculator {
 
-    //Create variables
-    double num1;
-    double num2;
-    String action;
-    double result;
+//    //Create variables
+//    double num1;
+//    double num2;
+//    String action;
+//    double result;
     LocalDate createdDate = LocalDate.now();
 
 //    public ConsoleCalculator(double num1, double num2, String action) {
@@ -26,7 +26,11 @@ public class ConsoleCalculator {
 
 
     //Create object, which belongs to class FileHistory
-    FileHistory fileHistory = new FileHistory();
+    History fileHistory = new FileHistory();
+
+
+    //Create object, which belongs to class InMemoryHistory
+    History inMemoryHistory = new InMemoryHistory();
 
 
     //Method for realisation of operations with numbers
@@ -35,63 +39,44 @@ public class ConsoleCalculator {
         switch (action) {
             case ("sum"):
                 double res1 = num1 + num2;
-                fileHistory.writeHistory(num1, num2, action, res1, createdDate);
+                CalcOperation calcOperation1 = new CalcOperation(num1, num2, action, res1, createdDate);                 //Create object of class CalcOperation
+
+                fileHistory.writeHistory(calcOperation1);
+                inMemoryHistory.writeHistory(calcOperation1);
+               inMemoryHistory.toString();
                 return res1;
 
             case ("deduct"):
                 double res2 = num1 - num2;
-                fileHistory.writeHistory(num1, num2, action, res2, createdDate);
+                CalcOperation calcOperation2 = new CalcOperation(num1, num2, action, res2, createdDate);                 //Create object of class CalcOperation
+
+                fileHistory.writeHistory(calcOperation2);
+                inMemoryHistory.writeHistory(calcOperation2);
                 return res2;
 
             case ("mult"):
                 double res3 = num1 * num2;
-                fileHistory.writeHistory(num1, num2, action, res3, createdDate);
+                CalcOperation calcOperation3 = new CalcOperation(num1, num2, action, res3, createdDate);                 //Create object of class CalcOperation
+
+                fileHistory.writeHistory(calcOperation3);
+                inMemoryHistory.writeHistory(calcOperation3);
                 return res3;
 
             case ("divide"):
                 double res4 = num1 / num2;
-                fileHistory.writeHistory(num1, num2, action, res4, createdDate);
+                CalcOperation calcOperation4 = new CalcOperation(num1, num2, action, res4, createdDate);                 //Create object of class CalcOperation
+
+                fileHistory.writeHistory(calcOperation4);
+                inMemoryHistory.writeHistory(calcOperation4);
                 return res4;
         }
         return 0;
     }
 
 
+
     //Getters and setters
-
-    public double getNum1() {
-        return num1;
-    }
-
-    public void setNum1(double num1) {
-        this.num1 = num1;
-    }
-
-    public double getNum2() {
-        return num2;
-    }
-
-    public void setNum2(double num2) {
-        this.num2 = num2;
-    }
-
-    public String getAction() {
-        return action;
-    }
-
-    public void setAction(String action) {
-        this.action = action;
-    }
-
-    public double getResult() {
-        return result;
-    }
-
-    public void setResult(double result) {
-        this.result = result;
-    }
-
-    public LocalDate getCreatedDate() {
+        public LocalDate getCreatedDate() {
         return createdDate;
     }
 
@@ -99,13 +84,48 @@ public class ConsoleCalculator {
         this.createdDate = createdDate;
     }
 
-    @Override
-    public String toString() {
-        return "Operation { " + "num1 = " + num1 + "  " +
-                ", num2 = " + num2 + "  " +
-                ", action = " + action + "  " +
-                ", result = " + result + "  " +
-                ", date is " + createdDate + " }";
-    }
+
+//
+//    public double getNum1() {
+//        return num1;
+//    }
+//
+//    public void setNum1(double num1) {
+//        this.num1 = num1;
+//    }
+//
+//    public double getNum2() {
+//        return num2;
+//    }
+//
+//    public void setNum2(double num2) {
+//        this.num2 = num2;
+//    }
+//
+//    public String getAction() {
+//        return action;
+//    }
+//
+//    public void setAction(String action) {
+//        this.action = action;
+//    }
+//
+//    public double getResult() {
+//        return result;
+//    }
+//
+//    public void setResult(double result) {
+//        this.result = result;
+//    }
+
+
+//    @Override
+//    public String toString() {
+//        return "Operation { " + "num1 = " + num1 + "  " +
+//                ", num2 = " + num2 + "  " +
+//                ", action = " + action + "  " +
+//                ", result = " + result + "  " +
+//                ", date is " + createdDate + " }";
+//    }
 }
 

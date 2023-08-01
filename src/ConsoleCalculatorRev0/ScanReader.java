@@ -1,6 +1,6 @@
 package ConsoleCalculatorRev0;
 
-public interface IFScanReader {
+public interface ScanReader {
     double readNumbers();
     String readAction();
 }

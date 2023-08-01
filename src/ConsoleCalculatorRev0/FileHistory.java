@@ -5,15 +5,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 
-public class FileHistory {
+public class FileHistory implements History{
 
     //Write history of calculations
-    public void writeHistory(double num1, double num2, String action, double result, LocalDate createdDate) {
+    @Override
+    public void writeHistory(CalcOperation calcOperation) {
         File file = new File("history.txt");
         FileWriter fileWriter;
         try {
             fileWriter = new FileWriter(file, true);
-            fileWriter.write("num1: " + num1 + " num2: " + num2 + " action: " + action + " =result: " + result + ", Date and time of operation: " + createdDate);
+            fileWriter.write("num1: " + calcOperation.num1 + " num2: " + calcOperation.num2 + " action: " + calcOperation.action + " =result: " + calcOperation.result +
+                    ", Date and time of operation: " + calcOperation.createdDate);
             fileWriter.write(10);
             fileWriter.close();
         } catch (IOException e) {

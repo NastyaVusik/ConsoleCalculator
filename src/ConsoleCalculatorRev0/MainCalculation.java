@@ -20,6 +20,7 @@ public class MainCalculation {
         ConsoleWriter consoleWriter = new ConsoleWriter();
 
 
+
         consoleWriter.printMessage("Enter the number num1: ");
         double num1 = consoleReader.readNumbers();
 
@@ -33,6 +34,8 @@ consoleWriter.printMessage("Enter the operation with this numbers: ");
         consoleWriter.printMessage("Result of calculation: " + result);
 
         consoleWriter.printMessage("Date and time of operation: " + consoleCalculator.getCreatedDate());
+
+
 
     }
 
