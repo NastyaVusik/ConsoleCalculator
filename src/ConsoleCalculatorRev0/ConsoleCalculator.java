@@ -1,6 +1,7 @@
 package ConsoleCalculatorRev0;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class ConsoleCalculator {
 
@@ -34,47 +35,43 @@ public class ConsoleCalculator {
 
 
     //Method for realisation of operations with numbers
-    public double calculateResult(double num1, double num2, String action) {
+    public double calculateResult(CalcOperation calcOperation) {            //Pass object calcOperation instead (double num1, double num2, String action)
 
-        switch (action) {
-            case ("sum"):
-                double res1 = num1 + num2;
-                CalcOperation calcOperation1 = new CalcOperation(num1, num2, action, res1, createdDate);                 //Create object of class CalcOperation
+            switch (calcOperation.getAction()) {
+                case ("sum"):
+                    double res1 = calcOperation.num1 + calcOperation.num2;
+                    CalcOperation calcOperation1 = new CalcOperation(calcOperation.num1, calcOperation.num2, calcOperation.action, res1, createdDate);                 //Create object of class CalcOperation
 
-                fileHistory.writeHistory(calcOperation1);
-                inMemoryHistory.writeHistory(calcOperation1);
-                inMemoryHistory.printArrayList();
-                return res1;
+                    fileHistory.writeHistory(calcOperation1);
+                    inMemoryHistory.writeHistory(calcOperation1);
+                    return res1;
 
-            case ("deduct"):
-                double res2 = num1 - num2;
-                CalcOperation calcOperation2 = new CalcOperation(num1, num2, action, res2, createdDate);                 //Create object of class CalcOperation
+                case ("deduct"):
+                    double res2 = calcOperation.num1 - calcOperation.num2;
+                    CalcOperation calcOperation2 = new CalcOperation(calcOperation.num1, calcOperation.num2, calcOperation.action, res2, createdDate);                 //Create object of class CalcOperation
 
-                fileHistory.writeHistory(calcOperation2);
-                inMemoryHistory.writeHistory(calcOperation2);
-                inMemoryHistory.printArrayList();
-                return res2;
+                    fileHistory.writeHistory(calcOperation2);
+                    inMemoryHistory.writeHistory(calcOperation2);
+                    return res2;
 
-            case ("mult"):
-                double res3 = num1 * num2;
-                CalcOperation calcOperation3 = new CalcOperation(num1, num2, action, res3, createdDate);                 //Create object of class CalcOperation
+                case ("mult"):
+                    double res3 = calcOperation.num1 * calcOperation.num2;
+                    CalcOperation calcOperation3 = new CalcOperation(calcOperation.num1, calcOperation.num2, calcOperation.action, res3, createdDate);                 //Create object of class CalcOperation
 
-                fileHistory.writeHistory(calcOperation3);
-                inMemoryHistory.writeHistory(calcOperation3);
-                inMemoryHistory.printArrayList();
-                return res3;
+                    fileHistory.writeHistory(calcOperation3);
+                    inMemoryHistory.writeHistory(calcOperation3);
+                    return res3;
 
-            case ("divide"):
-                double res4 = num1 / num2;
-                CalcOperation calcOperation4 = new CalcOperation(num1, num2, action, res4, createdDate);                 //Create object of class CalcOperation
+                case ("divide"):
+                    double res4 = calcOperation.num1 / calcOperation.num2;
+                    CalcOperation calcOperation4 = new CalcOperation(calcOperation.num1, calcOperation.num2, calcOperation.action, res4, createdDate);                 //Create object of class CalcOperation
 
-                fileHistory.writeHistory(calcOperation4);
-                inMemoryHistory.writeHistory(calcOperation4);
-                inMemoryHistory.printArrayList();
-                return res4;
+                    fileHistory.writeHistory(calcOperation4);
+                    inMemoryHistory.writeHistory(calcOperation4);
+                    return res4;
+            }
+            return 0;
         }
-        return 0;
-    }
 
 
 

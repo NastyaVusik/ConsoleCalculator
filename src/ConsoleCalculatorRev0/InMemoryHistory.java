@@ -24,9 +24,12 @@ public class InMemoryHistory implements History{
 
 //Method for print ArrayList in console                 ???????????????????????????????????????????
     public void printArrayList(){
+        consoleWriter.printMessage("\n\nHistory of calculation in ArrayList:\n ");
+
         for(String history : memoryHistory){
-consoleWriter.printMessage("\n\nHistory of calculation in ArrayList:\n " + history + "\n");
+consoleWriter.printMessage(history);
         }
 
+        consoleWriter.printMessage("\n\n");
     }
 }
