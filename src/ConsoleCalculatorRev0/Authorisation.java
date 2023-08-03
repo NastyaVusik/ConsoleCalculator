@@ -1,6 +1,6 @@
 package ConsoleCalculatorRev0;
 
-public class Login {
+public class Authorisation {
 
     //Create object of class ConsoleWriter
     private final ConsoleWriter consoleWriter = new ConsoleWriter();
@@ -13,19 +13,12 @@ public class Login {
 
 
     //Create variable actual username and password
-    private String realUsername;
-    private String realPassword;
+     private String realUsername = "Nastya";
+     private String realPassword = "123";
 
-    //Create variables of username and password, which user inputs
+    //Create variables of username and password
     String username;
     String password;
-
-
-    //Method of registration in calculator app
-    public String loginNewUser(){
-
-    }
-
 
 
     //Method to check username and password
