@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 public class FileHistory implements History{
 
+
     //Write history of calculations
     @Override
     public void writeHistory(CalcOperation calcOperation) {

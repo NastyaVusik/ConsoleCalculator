@@ -11,13 +11,11 @@ public class StartApplication {
     //Create object of class ConsoleCalculator
     ConsoleCalculator consoleCalculator = new ConsoleCalculator();
 
-    //Create object of class InMemoryHistory
-//    InMemoryHistory inMemoryHistory = new InMemoryHistory();
-
 
 
     //Method for repeating action with object of class ConsoleCalculator
     public void start(){
+
         while (true){
             consoleWriter.printMessage("Enter the number num1: ");
             double num1 = consoleReader.readNumbers();
@@ -47,7 +45,6 @@ public class StartApplication {
                 if(number == 2){
 consoleCalculator.inMemoryHistory.printArrayList();
                 }
-
 
         }
     }
