@@ -26,15 +26,14 @@ public class MainCalculation {
         StartApplication startApplication = new StartApplication();
 
         //Create object of class Login
-        Login login = new Login();
-
+        Authorisation authorisation = new Authorisation();
 
 
         //Begin and enjoy!!!
 //        startApplication.start();
 
-        //Begin and enjoy after successful registration!!!
-login.checkUsernamePassword();
+        //Begin and enjoy after successful authorisation!!!
+        authorisation.checkUsernamePassword();
 
 
     }
