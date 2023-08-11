@@ -11,6 +11,10 @@ public class Authorisation {
     //Create object of class StartApplication
         StartApplication startApplication = new StartApplication();
 
+    //Create object of class Calculator
+    Calculator calculator = new Calculator();
+
+
 
     //Create variable actual username and password
      private String realUsername = "Nastya";

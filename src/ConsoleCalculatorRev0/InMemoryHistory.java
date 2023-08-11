@@ -17,7 +17,7 @@ public class InMemoryHistory implements History{
     @Override
     public void writeHistory(CalcOperation calcOperation){
         memoryHistory.add("num1: " + calcOperation.num1 + " num2: " + calcOperation.num2 + " action: " + calcOperation.action + " =result: " + calcOperation.result +
-                ", Date and time of operation: " + calcOperation.getCreatedDate());
+                ", Date and time of operation: " + calcOperation.getFormatDateTime());
     }
 
 

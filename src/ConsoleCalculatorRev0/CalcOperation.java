@@ -1,6 +1,8 @@
 package ConsoleCalculatorRev0;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class CalcOperation {
 
@@ -9,7 +11,12 @@ public class CalcOperation {
     double num2;
     String action;
     double result;
-    LocalDate createdDate = LocalDate.now();
+
+    //Date and time
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String formatDateTime = now.format(formatter);
+
 
 
     public CalcOperation(double num1, double num2, String action) {
@@ -18,12 +25,12 @@ public class CalcOperation {
         this.action = action;
     }
 
-    public CalcOperation(double num1, double num2, String action, double result, LocalDate createdDate) {
+    public CalcOperation(double num1, double num2, String action, double result, String formatDateTime) {
         this.num1 = num1;
         this.num2 = num2;
         this.action = action;
         this.result = result;
-        this.createdDate = createdDate;
+        this.formatDateTime = formatDateTime;
     }
 
 
@@ -61,14 +68,13 @@ public class CalcOperation {
         this.result = result;
     }
 
-    public LocalDate getCreatedDate() {
-        return createdDate;
+    public String getFormatDateTime() {
+        return formatDateTime;
     }
 
-    public void setCreatedDate(LocalDate createdDate) {
-        this.createdDate = createdDate;
+    public void setFormatDateTime(String formatDateTime) {
+        this.formatDateTime = formatDateTime;
     }
-
 
     @Override
     public String toString() {
@@ -76,7 +82,7 @@ public class CalcOperation {
                 ", num2 = " + num2 + "  " +
                 ", action = " + action + "  " +
                 ", result = " + result + "  " +
-                ", date is " + createdDate + " }";
+                ", date is " + formatDateTime + " }";
     }
 
 }

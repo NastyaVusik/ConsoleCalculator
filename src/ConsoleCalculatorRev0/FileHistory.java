@@ -16,7 +16,7 @@ public class FileHistory implements History{
         try {
             fileWriter = new FileWriter(file, true);
             fileWriter.write("num1: " + calcOperation.num1 + " num2: " + calcOperation.num2 + " action: " + calcOperation.action + " =result: " + calcOperation.result +
-                    ", Date and time of operation: " + calcOperation.createdDate);
+                    ", Date and time of operation: " + calcOperation.getFormatDateTime());
             fileWriter.write(10);
             fileWriter.close();
         } catch (IOException e) {

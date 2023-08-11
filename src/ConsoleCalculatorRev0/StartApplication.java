@@ -8,12 +8,12 @@ public class StartApplication {
     //Create object of class ConsoleReader
     private final ConsoleReader consoleReader = new ConsoleReader();
 
-    //Create object of class ConsoleCalculator
-    ConsoleCalculator consoleCalculator = new ConsoleCalculator();
+    //Create object of class Calculator
+    Calculator calculator = new Calculator();
 
 
 
-    //Method for repeating action with object of class ConsoleCalculator
+    //Method for repeating action with object of class Calculator
     public void start(){
 
         while (true){
@@ -26,10 +26,10 @@ public class StartApplication {
             consoleWriter.printMessage("Enter the operation with this numbers: ");
             String action = consoleReader.readAction();
 
-            double result = consoleCalculator.calculateResult(new CalcOperation(num1, num2, action));                  //(num1, num2, action)
+            double result = calculator.calculateResult(new CalcOperation(num1, num2, action));                  //(num1, num2, action)
             consoleWriter.printMessage("Result of calculation: " + result);
 
-            consoleWriter.printMessage("Date and time of operation: " + consoleCalculator.getCreatedDate());
+            consoleWriter.printMessage("Date and time of operation: " + calculator.formatDateTime);
 
             //Continue calculation?
             consoleWriter.printMessage("\n\nEnter 0 - if you want exit. \nEnter 1 - continue. \n2 - show history of calculation");
@@ -43,7 +43,7 @@ public class StartApplication {
                     continue;
                 }
                 if(number == 2){
-consoleCalculator.inMemoryHistory.printArrayList();
+calculator.inMemoryHistory.printArrayList();
                 }
 
         }
