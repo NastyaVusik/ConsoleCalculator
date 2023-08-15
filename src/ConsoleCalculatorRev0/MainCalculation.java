@@ -1,5 +1,8 @@
 package ConsoleCalculatorRev0;
 
+import ConsoleCalculatorRev0.CalculatorUsers.RegisterNewUser;
+import ConsoleCalculatorRev0.CalculatorUsers.CalculatorUser;
+
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class MainCalculation {
@@ -25,18 +28,23 @@ public class MainCalculation {
         //Create object of class InMemoryHistory
         InMemoryHistory inMemoryHistory = new InMemoryHistory();
 
-        //Create object of class StartApplication
-        StartApplication startApplication = new StartApplication();
-
         //Create object of class Login
-        Authorisation authorisation = new Authorisation();
+        String newUserName = "";
+        String newUserPassword = "";
+
+        CalculatorUser calculatorUser = new CalculatorUser(newUserName, newUserPassword);
+        RegisterNewUser authorisation = new RegisterNewUser(calculatorUser);
+        authorisation.registerNewUser(newUserName, newUserPassword);
+
+        //Create object of class StartApplication
+        StartApplication startApplication = new StartApplication(calculatorUser);
 
 
         //Begin and enjoy!!!
 //        startApplication.start();
 
         //Begin and enjoy after successful authorisation!!!
-        authorisation.checkUsernamePassword();
+//        authorisation.checkUsernamePassword();
 
 
     }
