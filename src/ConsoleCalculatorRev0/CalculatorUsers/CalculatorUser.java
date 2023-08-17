@@ -16,36 +16,39 @@ public class CalculatorUser {
     Calculator calculator = new Calculator();
 
 
-    //Object of new visitor
+    //Object of new visitor, which will register the first time
     private String newUserName;
-   private String newUserPassword;
-   private int userID;
+    private String newUserEmail;
+    private String newUserPassword;
+    private int userID;
 
-    public CalculatorUser(String newUserName, String newUserPassword){
-        this.userID = userID;
+    public CalculatorUser(String newUserName, String newUserEmail, String newUserPassword) {
         this.newUserName = newUserName;
+        this.newUserEmail = newUserEmail;
         this.newUserPassword = newUserPassword;
+        this.userID = userID;
     }
 
 
     //Object of old visitor
     private String realOldUserName = newUserName;             //Create variable actual username and password
+    private String realOldUserEmail = newUserEmail;
     private String realOldUserPassword = newUserPassword;
     private String oldUserNameInput;            //Create variables of username and password, which old user input in time of registration
     private String oldUserPasswordInput;
 
 
-    public CalculatorUser(String realOldUserName, String realOldUserPassword, String oldUserNameInput, String oldUserPasswordInput){
-        this.userID = userID;
+    public CalculatorUser(String realOldUserName, String realOldUserEmail, String realOldUserPassword, String oldUserNameInput, String oldUserPasswordInput) {
         this.realOldUserName = realOldUserName;
+        this.realOldUserEmail = realOldUserEmail;
         this.realOldUserPassword = realOldUserPassword;
         this.oldUserNameInput = oldUserNameInput;
         this.oldUserPasswordInput = oldUserPasswordInput;
+        this.userID = userID;
     }
 
 
     //Getters and Setters
-
 
     public int getUserID() {
         return userID;
@@ -63,6 +66,14 @@ public class CalculatorUser {
         this.newUserName = newUserName;
     }
 
+    public String getNewUserEmail() {
+        return newUserEmail;
+    }
+
+    public void setNewUserEmail(String newUserEmail) {
+        this.newUserEmail = newUserEmail;
+    }
+
     public String getNewUserPassword() {
         return newUserPassword;
     }
@@ -77,6 +88,14 @@ public class CalculatorUser {
 
     public void setRealOldUserName(String realOldUserName) {
         this.realOldUserName = realOldUserName;
+    }
+
+    public String getRealOldUserEmail() {
+        return realOldUserEmail;
+    }
+
+    public void setRealOldUserEmail(String realOldUserEmail) {
+        this.realOldUserEmail = realOldUserEmail;
     }
 
     public String getRealOldUserPassword() {
@@ -106,12 +125,17 @@ public class CalculatorUser {
 
 //    @Override
 //    public String toString() {
-//        return "Hello " + newUserName + " !";
+//        return "\nHello " + realOldUserName + " !\n";
 //    }
 
 
     @Override
     public String toString() {
-        return "Hello " + realOldUserName + " !";
+        return "\nUser's common information:\n" +
+                 "1) Username is " + getRealOldUserName() + ";\n" +
+                "2) ID is" + getUserID() + ";\n" +
+                "3) Email is " + getRealOldUserEmail() + ";\n" +
+                "4) Password is" + getRealOldUserPassword() + ";\n" +
+                "5) Date and time of registration is ";
     }
 }

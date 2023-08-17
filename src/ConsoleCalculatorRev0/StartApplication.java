@@ -21,7 +21,7 @@ public class StartApplication {
     }
 
     //Create object of class RegisterNewUser
-    RegisterNewUser registerNewUser = new RegisterNewUser(calculatorUser);
+    RegisterNewUser registerNewUser = new RegisterNewUser();
 
 
 
@@ -34,7 +34,7 @@ public class StartApplication {
         int choice = (int) consoleReader.readNumbers();
 
         if(choice == 1){
-            registerNewUser.registerNewUser(calculatorUser.getNewUserName(), calculatorUser.getNewUserPassword());
+            registerNewUser.registerNewUser(calculatorUser);
             registerNewUser.saveNewUser(calculatorUser);
 
         }

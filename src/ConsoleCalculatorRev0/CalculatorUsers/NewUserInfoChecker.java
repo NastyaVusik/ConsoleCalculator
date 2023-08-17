@@ -3,10 +3,11 @@ package ConsoleCalculatorRev0.CalculatorUsers;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class NamePasswordParser {
+public class NewUserInfoChecker {
 
     private String regexUserName = "\\(.{1,16}[^\s]\\)";            //?????????????????????
 private String regexUserPassword = "\\(.{6,}\\)\\(\\+[A-Z]\\){1,}\\(\\+\\d{1,}\\)\\+\\(\\S{1,}\\)";
+private String regexUserEmail = "^(.+)@(.+)$";
 
 
     //Method for checking a new user's name
@@ -33,5 +34,31 @@ else {
        }
     }
 
+
+    //Method for checking a new email
+    public boolean checkUserEmail(String newUserEmail){
+        Pattern pattern = Pattern.compile(regexUserEmail);
+        Matcher emailMatcher = pattern.matcher(newUserEmail);
+        if(emailMatcher.matches()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+
+    //Method for checking, if newUserName is already employed
+    public boolean isUserNameOccupied(String newUserName){
+       //allUsersMapList.containsValue(realOldUserName)
+        return true;
+    }
+
+
+    //Method for checking, if newUserEmail is already employed
+    public boolean isUserEmailOccupied(String newUserEmail){
+        //allUsersMapList.containsValue(realOldUserEmail)
+        return true;
+    }
 
 }

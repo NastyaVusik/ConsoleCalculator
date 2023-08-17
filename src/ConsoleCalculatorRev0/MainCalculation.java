@@ -31,17 +31,16 @@ public class MainCalculation {
         //Create object of class Login
         String newUserName = "";
         String newUserPassword = "";
+        String newUserEmail = "";
 
-        CalculatorUser calculatorUser = new CalculatorUser(newUserName, newUserPassword);
-        RegisterNewUser authorisation = new RegisterNewUser(calculatorUser);
-        authorisation.registerNewUser(newUserName, newUserPassword);
+        CalculatorUser calculatorUser = new CalculatorUser(newUserName, newUserEmail, newUserPassword);
 
         //Create object of class StartApplication
         StartApplication startApplication = new StartApplication(calculatorUser);
 
 
         //Begin and enjoy!!!
-//        startApplication.start();
+        startApplication.start();
 
         //Begin and enjoy after successful authorisation!!!
 //        authorisation.checkUsernamePassword();
