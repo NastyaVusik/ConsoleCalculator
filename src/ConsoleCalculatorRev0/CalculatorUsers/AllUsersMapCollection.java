@@ -6,9 +6,11 @@ import ConsoleCalculatorRev0.ConsoleWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class AllUsersMapCollection {
 
@@ -19,20 +21,16 @@ public class AllUsersMapCollection {
     private final ConsoleReader consoleReader = new ConsoleReader();
 
     //Create Map collection
-    private Map<Integer, String> allUsersMapList = new HashMap<>();
+    private Map<Integer, CalculatorUser> allUsersMapList = new HashMap<>();
 
     //Create object of class RegisterNewUser
     RegisterNewUser registerNewUser;
     CalculatorUser calculatorUser;
 
 
-    public AllUsersMapCollection(RegisterNewUser registerNewUser){
-        this.registerNewUser = registerNewUser;
-    }
-
 
     //Method for filling Map List
-    public Map<Integer, String> fillAllUserMapList(){
+    public void saveAllUserMapList(){
 
         String filePath = "src/ConsoleCalculatorRev0/CalculatorUsers/AllUsersMap.txt";
 
@@ -40,16 +38,23 @@ public class AllUsersMapCollection {
         File allUsersMapFile = new File(filePath);
 
         try(FileWriter writer = new FileWriter(allUsersMapFile, true)) {
-writer.write(registerNewUser.userID);
-writer.write(registerNewUser.registerNewUser(calculatorUser).toString());
+writer.write(calculatorUser.getUserID());
+writer.write("User name: " + calculatorUser.getUserName() + ", user email: " + calculatorUser.getUserEmail() + ", user password: " + calculatorUser.getUserPassword()+ ";\n");
+
         } catch (IOException e){
             e.printStackTrace();
         }
 
+        allUsersMapList.put(calculatorUser.getUserID(), calculatorUser);
 
-
-
-        return allUsersMapList;
     }
 
+
+//    public void readAllUserMapList(){
+//
+//    }
+
+    public Map<Integer, CalculatorUser> getAllUsersMapList() {
+        return allUsersMapList;
+    }
 }

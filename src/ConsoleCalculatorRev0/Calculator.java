@@ -7,9 +7,10 @@ import java.time.format.DateTimeFormatter;
 public class Calculator {
 
     //Date and time
-    LocalDateTime now = LocalDateTime.now();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-    String formatDateTime = now.format(formatter);
+
+//    LocalDateTime now = LocalDateTime.now();
+//    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+//    String formatDateTime = now.format(formatter);
 
 
     //Create object, which belongs to class FileHistory

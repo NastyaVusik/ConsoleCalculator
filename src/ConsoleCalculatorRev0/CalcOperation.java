@@ -13,11 +13,12 @@ public class CalcOperation {
     double result;
 
     //Date and time
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-        String formatDateTime = now.format(formatter);
+    String formatDateTime;
 
 
+    public CalcOperation() {
+
+    }
 
     public CalcOperation(double num1, double num2, String action) {
         this.num1 = num1;
@@ -32,6 +33,18 @@ public class CalcOperation {
         this.result = result;
         this.formatDateTime = formatDateTime;
     }
+
+
+    //Method to get Date and time
+    public String getFormatDateTime() {
+
+    LocalDateTime now = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+    formatDateTime = now.format(formatter);
+
+    return  formatDateTime;
+}
+
 
 
     //Getters and setters
@@ -68,9 +81,9 @@ public class CalcOperation {
         this.result = result;
     }
 
-    public String getFormatDateTime() {
-        return formatDateTime;
-    }
+//    public String getFormatDateTime() {
+//        return formatDateTime;
+//    }
 
     public void setFormatDateTime(String formatDateTime) {
         this.formatDateTime = formatDateTime;

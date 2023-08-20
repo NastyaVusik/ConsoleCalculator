@@ -1,5 +1,6 @@
 package ConsoleCalculatorRev0.CalculatorUsers;
 
+import ConsoleCalculatorRev0.CalcOperation;
 import ConsoleCalculatorRev0.ConsoleReader;
 import ConsoleCalculatorRev0.ConsoleWriter;
 
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.time.format.DateTimeFormatter;
 
 public class RegisterNewUser implements SaveNewUser{
 
@@ -22,59 +24,76 @@ public class RegisterNewUser implements SaveNewUser{
     //Create object of class NewUserInfoChecker
     NewUserInfoChecker newUserInfoChecker = new NewUserInfoChecker();
 
-    //Create object for save date and time of new account creation
-    LocalDateTime accountWasCreated = LocalDateTime.now();
-
 //Create collection Map<Integer ID, String userInfoList> for keeping all users
-     Map<Integer, String> allUsersMapList;
+     Map<Integer, List<String>> allUsersMapList;
 
-    //Variable of user ID
-    int userID = 0;
+     //Create object of class CalcOperation
+    CalcOperation calcOperation;
+
+
+    //Date and time
+    LocalDateTime now = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+    String formatDateTime = now.format(formatter);
+
+    Integer userID = 0;
+
 
 
     //Method for registration of new User
-    public List<String> registerNewUser(CalculatorUser calculatorUser){
-        List<String> userInfoList = new ArrayList<>();
+    public CalculatorUser registerNewUser(){
+        CalculatorUser calculatorUser = new CalculatorUser();
 
-        consoleWriter.printMessage("Enter your username. It might be one word. Quantity of symbols is from 1 to 18: ");
-       String newUserName = consoleReader.readAction();
-String realOldUserName = newUserName;           //??????????????????????????????????????????????????????????????????????????????
-        if((newUserInfoChecker.checkUserName(newUserName)) && (newUserInfoChecker.isUserNameOccupied(newUserName) == false)){
-            userInfoList.add(newUserName);
-            calculatorUser.setNewUserName(newUserName);
-        }
-        else{
-            consoleWriter.printMessage("Username isn't correct or this username has been already employed. Please, try again...");
-        }
+        //Variable of user ID
+//        Integer userID = calculatorUser.getUserID();
 
-        consoleWriter.printMessage("Enter your email: ");
-        String newUserEmail = consoleReader.readAction();
-        String realOldUserEmail = newUserEmail;           //??????????????????????????????????????????????????????????????????????????????
-        if(newUserInfoChecker.checkUserEmail(newUserEmail) == false){
-            userInfoList.add(newUserEmail);
-            calculatorUser.setNewUserEmail(newUserEmail);
-        }
-        else {
-            consoleWriter.printMessage("User with this email was already registered. Please, enter another email...");
+        while(true) {
+            consoleWriter.printMessage("\nEnter your username. It might be one word. Quantity of symbols is from 1 to 18: ");
+            String userName = consoleReader.readAction();
+
+            if ((newUserInfoChecker.checkUserName(userName)) && !(newUserInfoChecker.isUserNameOccupied(userName))) {
+                calculatorUser.setUserName(userName);
+                break;
+
+            } else {
+                consoleWriter.printMessage("\nUsername isn't correct or this username has been already registered. Please, try again...");
+            }
         }
 
-        consoleWriter.printMessage("Enter your password. Length of password is more 6 symbols. There is required at least one digit," +
-                " one upper case letter, one ony other special symbol: ");
-        String newUserPassword = consoleReader.readAction();
+        while (true) {
+            consoleWriter.printMessage("\nEnter your email: ");
+            String userEmail = consoleReader.readAction();
 
-        if(newUserInfoChecker.checkUserPassword(newUserPassword)) {
-            userInfoList.add(newUserPassword);
-            calculatorUser.setNewUserPassword(newUserPassword);
+            if (newUserInfoChecker.checkUserEmail(userEmail)  && !(newUserInfoChecker.isUserEmailOccupied(userEmail))) {
+                calculatorUser.setUserEmail(userEmail);
+                break;
+
+            } else {
+                consoleWriter.printMessage("\nEmail's format isn't correct or user with this email we has been already registered. Please, enter another email...");
+            }
         }
-        else{
-            consoleWriter.printMessage("The password isn't correct. Please, try again...");
+
+        while (true) {
+            consoleWriter.printMessage("\nEnter your password. Length of password is more 6 symbols. There is required at least one digit," +
+                    " one upper case letter, one ony other special symbol: ");
+            String userPassword = consoleReader.readAction();
+
+            if (newUserInfoChecker.checkUserPassword(userPassword)) {
+                calculatorUser.setUserPassword(userPassword);
+                break;
+
+            } else {
+                consoleWriter.printMessage("\nThe password isn't correct. Please, try again...");
+            }
         }
-consoleWriter.printMessage("HI, " + newUserName + "!\n" + "Your registration was successful!" );
+
         userID++;
-        userInfoList.add(String.valueOf(userID));
+
         calculatorUser.setUserID(userID);
 
-        return userInfoList;
+consoleWriter.printMessage("\nHi, " + calculatorUser.getUserName() + "!\n" + "Your registration was successful!\n" );
+
+        return calculatorUser;
     }
 
 
@@ -84,8 +103,8 @@ consoleWriter.printMessage("HI, " + newUserName + "!\n" + "Your registration was
         FileWriter fileWriter;
         try {
             fileWriter = new FileWriter(file, true);
-            fileWriter.write("User ID: "+ calculatorUser.getUserID() + "user name: " + calculatorUser.getNewUserName() + ", user's email: " + calculatorUser.getNewUserEmail() +
-                    ", password: " + calculatorUser.getNewUserPassword() + ", date and time of registration: " + accountWasCreated +"\n");
+            fileWriter.write("User ID: "+ userID +"user name: " + calculatorUser.getUserName() + ", user's email: " + calculatorUser.getUserEmail() +
+                    ", password: " + calculatorUser.getUserPassword() + ", date and time of registration: " + formatDateTime +"\n");
             fileWriter.write(10);
             fileWriter.close();
         } catch (IOException e){

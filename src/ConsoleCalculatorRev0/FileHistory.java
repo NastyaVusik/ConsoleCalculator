@@ -16,7 +16,7 @@ public class FileHistory implements History{
     //Write history of calculations
     @Override
     public void writeHistory(CalcOperation calcOperation) {
-        File file = new File("src/ConsoleCalculatorRev0/SaveHistoryFiles" + calculatorUser.getNewUserName() + ".txt");
+        File file = new File("src/ConsoleCalculatorRev0/SaveHistoryFiles" + calculatorUser.getUserName() + ".txt");
         FileWriter fileWriter;
         try {
             fileWriter = new FileWriter(file, true);

@@ -6,121 +6,60 @@ import ConsoleCalculatorRev0.ConsoleWriter;
 import ConsoleCalculatorRev0.StartApplication;
 
 public class CalculatorUser {
-    //Create object of class ConsoleWriter
-    private final ConsoleWriter consoleWriter = new ConsoleWriter();
-
-    //Create object of class ConsoleReader
-    private final ConsoleReader consoleReader = new ConsoleReader();
-
-    //Create object of class Calculator
-    Calculator calculator = new Calculator();
-
 
     //Object of new visitor, which will register the first time
-    private String newUserName;
-    private String newUserEmail;
-    private String newUserPassword;
-    private int userID;
+    private String userName;
+    private String userEmail;
+    private String userPassword;
+    private Integer userID;
 
-    public CalculatorUser(String newUserName, String newUserEmail, String newUserPassword) {
-        this.newUserName = newUserName;
-        this.newUserEmail = newUserEmail;
-        this.newUserPassword = newUserPassword;
-        this.userID = userID;
+
+    public CalculatorUser() {
+
     }
 
-
-    //Object of old visitor
-    private String realOldUserName = newUserName;             //Create variable actual username and password
-    private String realOldUserEmail = newUserEmail;
-    private String realOldUserPassword = newUserPassword;
-    private String oldUserNameInput;            //Create variables of username and password, which old user input in time of registration
-    private String oldUserPasswordInput;
-
-
-    public CalculatorUser(String realOldUserName, String realOldUserEmail, String realOldUserPassword, String oldUserNameInput, String oldUserPasswordInput) {
-        this.realOldUserName = realOldUserName;
-        this.realOldUserEmail = realOldUserEmail;
-        this.realOldUserPassword = realOldUserPassword;
-        this.oldUserNameInput = oldUserNameInput;
-        this.oldUserPasswordInput = oldUserPasswordInput;
+    public CalculatorUser(String userName, String userEmail, String userPassword, Integer userID) {
+        this.userName = userName;
+        this.userEmail = userEmail;
+        this.userPassword = userPassword;
         this.userID = userID;
     }
 
 
     //Getters and Setters
 
-    public int getUserID() {
-        return userID;
+    public int getUserID(){
+           return userID;
     }
 
-    public void setUserID(int userID) {
-        userID = userID;
+    public void setUserID(Integer userID) {
+        this.userID = userID;
     }
 
-    public String getNewUserName() {
-        return newUserName;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setNewUserName(String newUserName) {
-        this.newUserName = newUserName;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getNewUserEmail() {
-        return newUserEmail;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setNewUserEmail(String newUserEmail) {
-        this.newUserEmail = newUserEmail;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
-    public String getNewUserPassword() {
-        return newUserPassword;
+    public String getUserPassword() {
+        return userPassword;
     }
 
-    public void setNewUserPassword(String newUserPassword) {
-        this.newUserPassword = newUserPassword;
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 
-    public String getRealOldUserName() {
-        return realOldUserName;
-    }
-
-    public void setRealOldUserName(String realOldUserName) {
-        this.realOldUserName = realOldUserName;
-    }
-
-    public String getRealOldUserEmail() {
-        return realOldUserEmail;
-    }
-
-    public void setRealOldUserEmail(String realOldUserEmail) {
-        this.realOldUserEmail = realOldUserEmail;
-    }
-
-    public String getRealOldUserPassword() {
-        return realOldUserPassword;
-    }
-
-    public void setRealOldUserPassword(String realOldUserPassword) {
-        this.realOldUserPassword = realOldUserPassword;
-    }
-
-    public String getOldUserNameInput() {
-        return oldUserNameInput;
-    }
-
-    public void setOldUserNameInput(String oldUserNameInput) {
-        this.oldUserNameInput = oldUserNameInput;
-    }
-
-    public String getOldUserPasswordInput() {
-        return oldUserPasswordInput;
-    }
-
-    public void setOldUserPasswordInput(String oldUserPasswordInput) {
-        this.oldUserPasswordInput = oldUserPasswordInput;
-    }
 
 
 //    @Override
@@ -132,10 +71,10 @@ public class CalculatorUser {
     @Override
     public String toString() {
         return "\nUser's common information:\n" +
-                 "1) Username is " + getRealOldUserName() + ";\n" +
+                 "1) Username is " + getUserName() + ";\n" +
                 "2) ID is" + getUserID() + ";\n" +
-                "3) Email is " + getRealOldUserEmail() + ";\n" +
-                "4) Password is" + getRealOldUserPassword() + ";\n" +
+                "3) Email is " + getUserEmail() + ";\n" +
+                "4) Password is" + getUserEmail() + ";\n" +
                 "5) Date and time of registration is ";
     }
 }

@@ -29,11 +29,13 @@ public class MainCalculation {
         InMemoryHistory inMemoryHistory = new InMemoryHistory();
 
         //Create object of class Login
-        String newUserName = "";
-        String newUserPassword = "";
-        String newUserEmail = "";
+        String userName = "";
+        String userPassword = "";
+        String userEmail = "";
+        Integer userID = 0;
 
-        CalculatorUser calculatorUser = new CalculatorUser(newUserName, newUserEmail, newUserPassword);
+        CalculatorUser calculatorUser = new CalculatorUser(userName, userEmail, userPassword, userID);
+
 
         //Create object of class StartApplication
         StartApplication startApplication = new StartApplication(calculatorUser);

@@ -1,5 +1,7 @@
 package ConsoleCalculatorRev0;
 
+import ConsoleCalculatorRev0.CalculatorUsers.AllUsersMapCollection;
+import ConsoleCalculatorRev0.CalculatorUsers.AuthoriseOldUser;
 import ConsoleCalculatorRev0.CalculatorUsers.CalculatorUser;
 import ConsoleCalculatorRev0.CalculatorUsers.RegisterNewUser;
 
@@ -13,6 +15,7 @@ public class StartApplication {
 
     //Create object of class Calculator
     Calculator calculator = new Calculator();
+    CalcOperation calcOperation = new CalcOperation();
 
     //Create object of class CalculatorUser
     CalculatorUser calculatorUser;
@@ -22,6 +25,12 @@ public class StartApplication {
 
     //Create object of class RegisterNewUser
     RegisterNewUser registerNewUser = new RegisterNewUser();
+
+    //Create object of class AllUsersMapCollection
+    AllUsersMapCollection allUsersMapCollection = new AllUsersMapCollection();
+
+    AuthoriseOldUser authoriseOldUser = new AuthoriseOldUser();
+
 
 
 
@@ -34,8 +43,14 @@ public class StartApplication {
         int choice = (int) consoleReader.readNumbers();
 
         if(choice == 1){
-            registerNewUser.registerNewUser(calculatorUser);
+            registerNewUser.registerNewUser();
             registerNewUser.saveNewUser(calculatorUser);
+            allUsersMapCollection.saveAllUserMapList();
+
+        }
+
+        if(choice == 2){
+            authoriseOldUser.checkUsernamePassword();
 
         }
 
@@ -53,7 +68,7 @@ public class StartApplication {
             double result = calculator.calculateResult(new CalcOperation(num1, num2, action));                  //(num1, num2, action)
             consoleWriter.printMessage("Result of calculation: " + result);
 
-            consoleWriter.printMessage("Date and time of operation: " + calculator.formatDateTime);
+            consoleWriter.printMessage("Date and time of operation: " + calcOperation.formatDateTime);
 
             //Continue calculation?
             consoleWriter.printMessage("\n\nEnter 0 - if you want exit. " +
