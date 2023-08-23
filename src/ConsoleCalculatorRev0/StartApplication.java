@@ -1,9 +1,6 @@
 package ConsoleCalculatorRev0;
 
-import ConsoleCalculatorRev0.CalculatorUsers.SaveAllUsersInFile;
-import ConsoleCalculatorRev0.CalculatorUsers.AuthoriseOldUser;
-import ConsoleCalculatorRev0.CalculatorUsers.CalculatorUser;
-import ConsoleCalculatorRev0.CalculatorUsers.RegisterNewUser;
+import ConsoleCalculatorRev0.CalculatorUsers.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -33,6 +30,7 @@ public class StartApplication {
     SaveAllUsersInFile saveAllUsersInFile = new SaveAllUsersInFile();
 
     AuthoriseOldUser authoriseOldUser = new AuthoriseOldUser();
+    SaveNewUserInList saveNewUserInList = new SaveNewUserInList();
 
 
 
@@ -47,12 +45,12 @@ public class StartApplication {
 
         if(choice == 1){
             registerNewUser.registerNewUser();
-            registerNewUser.saveNewUser(calculatorUser);
-            try {
-                saveAllUsersInFile.saveAllUserInFile();
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
-            }
+           saveNewUserInList.saveNewUser(calculatorUser);
+//            try {
+//                saveAllUsersInFile.saveAllUserInFile();
+//            } catch (FileNotFoundException e) {
+//                throw new RuntimeException(e);
+//            }
 
         }
 
@@ -79,7 +77,7 @@ public class StartApplication {
             double result = calculator.calculateResult(new CalcOperation(num1, num2, action));                  //(num1, num2, action)
             consoleWriter.printMessage("Result of calculation: " + result);
 
-            consoleWriter.printMessage("Date and time of operation: " + calcOperation.formatDateTime);
+            consoleWriter.printMessage("Date and time of operation: " + calcOperation.getFormatDateTime());
 
             //Continue calculation?
             consoleWriter.printMessage("\n\nEnter 0 - if you want exit. " +

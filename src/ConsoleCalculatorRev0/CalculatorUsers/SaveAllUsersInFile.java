@@ -16,6 +16,7 @@ public class SaveAllUsersInFile {
     //Create object of class RegisterNewUser
     RegisterNewUser registerNewUser;
     CalculatorUser calculatorUser;
+    SaveNewUser saveNewUser = new SaveNewUserInList();
 
 
     //Method for filling Map List
@@ -50,12 +51,10 @@ public class SaveAllUsersInFile {
         String filePath = "src/ConsoleCalculatorRev0/CalculatorUsers/AllUsersFile.txt";
 
         try(FileWriter fileWriter = new FileWriter(filePath, true)) {
-            for(int i = 0; i< registerNewUser.getUsersInfoArrayList().size(); i++) {
 
                 fileWriter.write("User ID= " + calculatorUser.getUserID() + ": user name= " + calculatorUser.getUserName() + ", user's email= " + calculatorUser.getUserEmail() +
                         ", password= " + calculatorUser.getUserPassword() + ", date and time of registration= " + calculatorUser.getFormatDateTime() + "\n");
                 fileWriter.write(10);
-            }
 
         } catch (IOException e) {
             throw new RuntimeException(e);

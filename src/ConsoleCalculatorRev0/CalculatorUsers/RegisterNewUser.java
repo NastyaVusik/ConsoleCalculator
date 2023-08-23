@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.time.format.DateTimeFormatter;
 
-public class RegisterNewUser implements SaveNewUser{
+public class RegisterNewUser {
 
     //Create object of class ConsoleWriter
     private final ConsoleWriter consoleWriter = new ConsoleWriter();
@@ -21,10 +21,8 @@ public class RegisterNewUser implements SaveNewUser{
     //Create object of class NewUserInfoChecker
     NewUserInfoChecker newUserInfoChecker = new NewUserInfoChecker();
 
-     //Create object of class CalcOperation
+    //Create object of class CalcOperation
     CalcOperation calcOperation;
-
-    private List <CalculatorUser> usersInfoArrayList = new ArrayList<>();;
 
 
     //Date and time
@@ -35,16 +33,15 @@ public class RegisterNewUser implements SaveNewUser{
     Integer userID = 0;
 
 
-
     //Method for registration of new User
-    public CalculatorUser registerNewUser(){
+    public CalculatorUser registerNewUser() {
         CalculatorUser calculatorUser = new CalculatorUser();
 
-        while(true) {
+        while (true) {
             consoleWriter.printMessage("\nEnter your username. It might be one word. Quantity of symbols is from 1 to 18: ");
             String userName = consoleReader.readAction();
 
-            if ((newUserInfoChecker.checkUserName(userName)) && !(newUserInfoChecker.isUserNameOccupied(userName))) {
+            if ((newUserInfoChecker.checkUserName(userName))) {
                 calculatorUser.setUserName(userName);
                 break;
 
@@ -57,7 +54,7 @@ public class RegisterNewUser implements SaveNewUser{
             consoleWriter.printMessage("\nEnter your email: ");
             String userEmail = consoleReader.readAction();
 
-            if (newUserInfoChecker.checkUserEmail(userEmail)  && !(newUserInfoChecker.isUserEmailOccupied(userEmail))) {
+            if (newUserInfoChecker.checkUserEmail(userEmail)) {
                 calculatorUser.setUserEmail(userEmail);
                 break;
 
@@ -84,10 +81,11 @@ public class RegisterNewUser implements SaveNewUser{
 //
 //        calculatorUser.setUserID(userID);
 
-consoleWriter.printMessage("\nHi, " + calculatorUser.getUserName() + "!\n" + "Your registration was successful!\n" );
+        consoleWriter.printMessage("\nHi, " + calculatorUser.getUserName() + "!\n" + "Your registration was successful!\n");
 
         return calculatorUser;
     }
+}
 
 
 //    @Override
@@ -108,17 +106,4 @@ consoleWriter.printMessage("\nHi, " + calculatorUser.getUserName() + "!\n" + "Yo
 //    }
 
 
-    @Override
-    public void saveNewUser(CalculatorUser calculatorUser){
-        userID = usersInfoArrayList.size() + 1;
-        calculatorUser.setUserID(userID);
-       // usersInfoArrayList.set(userID, calculatorUser);           ????????????????????????????????????????????
-        usersInfoArrayList.add(calculatorUser);
-usersInfoArrayList.stream().forEach(user -> System.out.println(user));
 
-    }
-
-    public List<CalculatorUser> getUsersInfoArrayList() {
-        return usersInfoArrayList;
-    }
-}

@@ -5,8 +5,9 @@ import java.util.regex.Pattern;
 
 public class NewUserInfoChecker {
 
-    //Create object of class RegisterNewUser
-    RegisterNewUser registerNewUser = new RegisterNewUser();
+    //Create object of class CalculatorUser
+    CalculatorUser calculatorUser;
+    SaveNewUser saveNewUser = new SaveNewUserInList();
 
     private final String regexUserName = "^([^\\s]{1,16})$";
     private final String regexUserPassword = "^(?!.* )(?=.*\\d)(?=.*[A-Z]).{8,15}$";
@@ -39,9 +40,9 @@ public class NewUserInfoChecker {
     //Method for checking, if userName is already applied
     public boolean isUserNameOccupied(String userName) {
 
-        for (int i = 0; i < registerNewUser.getUsersInfoArrayList().size(); i++) {
+        for (int i = 0; i < saveNewUser.saveNewUser(calculatorUser).size(); i++) {
 
-            return (registerNewUser.getUsersInfoArrayList().get(i).getUserName()).equals(userName);
+            return (saveNewUser.saveNewUser(calculatorUser).get(i).getUserName()).equals(userName);
         }
         return false;
         }
@@ -49,8 +50,12 @@ public class NewUserInfoChecker {
 
         //Method for checking, if newUserEmail is already applied
         public boolean isUserEmailOccupied(String userEmail){
-            for(int i = 0; i < registerNewUser.getUsersInfoArrayList().size(); i++){
-            return (registerNewUser.getUsersInfoArrayList().get(i).getUserEmail()).equals(userEmail);
+
+//        String userEmail1 = registerNewUser.getUsersInfoArrayList().stream().filter(email -> {return email.equals(userEmail)}).findAny().orElse(null);
+
+            for(int i = 0; i < saveNewUser.saveNewUser(calculatorUser).size(); i++){
+
+            return (saveNewUser.saveNewUser(calculatorUser).get(i).getUserEmail()).equals(userEmail);
         }
 return false;
     }
