@@ -1,9 +1,12 @@
 package ConsoleCalculatorRev0;
 
-import ConsoleCalculatorRev0.CalculatorUsers.AllUsersMapCollection;
+import ConsoleCalculatorRev0.CalculatorUsers.SaveAllUsersInFile;
 import ConsoleCalculatorRev0.CalculatorUsers.AuthoriseOldUser;
 import ConsoleCalculatorRev0.CalculatorUsers.CalculatorUser;
 import ConsoleCalculatorRev0.CalculatorUsers.RegisterNewUser;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class StartApplication {
 
@@ -26,8 +29,8 @@ public class StartApplication {
     //Create object of class RegisterNewUser
     RegisterNewUser registerNewUser = new RegisterNewUser();
 
-    //Create object of class AllUsersMapCollection
-    AllUsersMapCollection allUsersMapCollection = new AllUsersMapCollection();
+    //Create object of class SaveAllUsersInFile
+    SaveAllUsersInFile saveAllUsersInFile = new SaveAllUsersInFile();
 
     AuthoriseOldUser authoriseOldUser = new AuthoriseOldUser();
 
@@ -45,12 +48,20 @@ public class StartApplication {
         if(choice == 1){
             registerNewUser.registerNewUser();
             registerNewUser.saveNewUser(calculatorUser);
-            allUsersMapCollection.saveAllUserMapList();
+            try {
+                saveAllUsersInFile.saveAllUserInFile();
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
 
         }
 
         if(choice == 2){
-            authoriseOldUser.checkUsernamePassword();
+            try {
+                authoriseOldUser.checkUsernamePassword();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
 
         }
 

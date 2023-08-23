@@ -1,11 +1,17 @@
 package ConsoleCalculatorRev0.CalculatorUsers;
 
-import ConsoleCalculatorRev0.Calculator;
-import ConsoleCalculatorRev0.ConsoleReader;
-import ConsoleCalculatorRev0.ConsoleWriter;
-import ConsoleCalculatorRev0.StartApplication;
+
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class CalculatorUser {
+
+    //Date and time
+    LocalDateTime now = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+    String formatDateTime = now.format(formatter);
+
 
     //Object of new visitor, which will register the first time
     private String userName;
@@ -15,14 +21,26 @@ public class CalculatorUser {
 
 
     public CalculatorUser() {
-
+        this.userName = null;
+        this.userEmail = null;
+        this.userPassword = null;
+        this.userID = 0;
     }
+
 
     public CalculatorUser(String userName, String userEmail, String userPassword, Integer userID) {
         this.userName = userName;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
         this.userID = userID;
+    }
+
+    public CalculatorUser(String userName, String userEmail, String userPassword, Integer userID, String formatDateTime) {
+        this.userName = userName;
+        this.userEmail = userEmail;
+        this.userPassword = userPassword;
+        this.userID = userID;
+        this.formatDateTime = formatDateTime;
     }
 
 
@@ -61,11 +79,13 @@ public class CalculatorUser {
     }
 
 
+    public String getFormatDateTime() {
+        return formatDateTime;
+    }
 
-//    @Override
-//    public String toString() {
-//        return "\nHello " + realOldUserName + " !\n";
-//    }
+    public void setFormatDateTime(String formatDateTime) {
+        this.formatDateTime = formatDateTime;
+    }
 
 
     @Override
@@ -75,6 +95,6 @@ public class CalculatorUser {
                 "2) ID is" + getUserID() + ";\n" +
                 "3) Email is " + getUserEmail() + ";\n" +
                 "4) Password is" + getUserEmail() + ";\n" +
-                "5) Date and time of registration is ";
+                "5) Date and time of registration is " + getFormatDateTime() + "\n";
     }
 }

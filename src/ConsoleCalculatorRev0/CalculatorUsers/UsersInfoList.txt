@@ -1,2 +1,8 @@
 
 
+User ID: 1user name: , user's email: , password: , date and time of registration: 21-08-2023 00:15:54
+
+User ID: 1, user name: , user's email: , password: , date and time of registration: 21-08-2023 00:27:29
+
+User ID: 1, user name: null, user's email: null, password: null, date and time of registration: 21-08-2023 16:36:58
+

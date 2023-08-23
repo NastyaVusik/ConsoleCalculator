@@ -28,13 +28,9 @@ public class MainCalculation {
         //Create object of class InMemoryHistory
         InMemoryHistory inMemoryHistory = new InMemoryHistory();
 
-        //Create object of class Login
-        String userName = "";
-        String userPassword = "";
-        String userEmail = "";
-        Integer userID = 0;
+        //Create object of class CalculatorUser
 
-        CalculatorUser calculatorUser = new CalculatorUser(userName, userEmail, userPassword, userID);
+        CalculatorUser calculatorUser = new CalculatorUser();
 
 
         //Create object of class StartApplication

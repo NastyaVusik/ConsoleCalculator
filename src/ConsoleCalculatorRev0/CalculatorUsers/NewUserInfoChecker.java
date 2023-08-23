@@ -5,8 +5,8 @@ import java.util.regex.Pattern;
 
 public class NewUserInfoChecker {
 
-    //Create object of class AllUsersMapCollection
-    AllUsersMapCollection allUsersMapCollection = new AllUsersMapCollection();
+    //Create object of class RegisterNewUser
+    RegisterNewUser registerNewUser = new RegisterNewUser();
 
     private final String regexUserName = "^([^\\s]{1,16})$";
     private final String regexUserPassword = "^(?!.* )(?=.*\\d)(?=.*[A-Z]).{8,15}$";
@@ -39,9 +39,9 @@ public class NewUserInfoChecker {
     //Method for checking, if userName is already applied
     public boolean isUserNameOccupied(String userName) {
 
-        for (int i = 0; i < allUsersMapCollection.getAllUsersMapList().size(); i++) {
+        for (int i = 0; i < registerNewUser.getUsersInfoArrayList().size(); i++) {
 
-            return (allUsersMapCollection.getAllUsersMapList().get(i).getUserName()).equals(userName);
+            return (registerNewUser.getUsersInfoArrayList().get(i).getUserName()).equals(userName);
         }
         return false;
         }
@@ -49,8 +49,8 @@ public class NewUserInfoChecker {
 
         //Method for checking, if newUserEmail is already applied
         public boolean isUserEmailOccupied(String userEmail){
-            for(int i = 0; i < allUsersMapCollection.getAllUsersMapList().size(); i++){
-            return (allUsersMapCollection.getAllUsersMapList().get(i).getUserEmail()).equals(userEmail);
+            for(int i = 0; i < registerNewUser.getUsersInfoArrayList().size(); i++){
+            return (registerNewUser.getUsersInfoArrayList().get(i).getUserEmail()).equals(userEmail);
         }
 return false;
     }
