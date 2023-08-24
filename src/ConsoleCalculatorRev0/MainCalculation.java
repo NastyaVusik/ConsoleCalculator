@@ -1,6 +1,6 @@
 package ConsoleCalculatorRev0;
 
-import ConsoleCalculatorRev0.CalculatorUsers.RegisterNewUser;
+import ConsoleCalculatorRev0.CalculationHistory.InMemoryHistory;
 import ConsoleCalculatorRev0.CalculatorUsers.CalculatorUser;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
@@ -11,25 +11,16 @@ public class MainCalculation {
 //    Реализовать консольный калькулятор с операциями + - * /.
 //  Для хранения операций использовать коллекции, а так же файлы и предоставить возможность в коде переключаться между ними.
 //  1) Добавить просмотр истории в меню калькулятора.
-//    2) Добавить возможность хранить историю в коллекции
+//    2) Добавить возможность хранить историю вычислений в коллекции
+//    3) Добавить возможность регистрации пользователей. После регистрации пользователь должен быть сохранен в файле
+//            4) Добавить метод для авторизации старого пользователя
+//            5) Теперь после регистарации пользователя история вычислений должна хранить его персональный ID
+//    и должен появиться порядковый номер вычисления(сквозная нумерация)
 
 
     public static void main(String[] args) {
 
-        //Create object of class Calculator
-        Calculator calculator = new Calculator();
-
-        //Create object of class ConsoleReader
-        ConsoleReader consoleReader = new ConsoleReader();
-
-        //Create object of class ConsoleWriter
-        ConsoleWriter consoleWriter = new ConsoleWriter();
-
-        //Create object of class InMemoryHistory
-        InMemoryHistory inMemoryHistory = new InMemoryHistory();
-
         //Create object of class CalculatorUser
-
         CalculatorUser calculatorUser = new CalculatorUser();
 
 
@@ -40,8 +31,6 @@ public class MainCalculation {
         //Begin and enjoy!!!
         startApplication.start();
 
-        //Begin and enjoy after successful authorisation!!!
-//        authorisation.checkUsernamePassword();
 
 
     }

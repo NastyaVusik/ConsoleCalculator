@@ -21,16 +21,14 @@ public class RegisterNewUser {
     //Create object of class NewUserInfoChecker
     NewUserInfoChecker newUserInfoChecker = new NewUserInfoChecker();
 
-    //Create object of class CalcOperation
-    CalcOperation calcOperation;
 
 
     //Date and time
-    LocalDateTime now = LocalDateTime.now();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-    String formatDateTime = now.format(formatter);
+//    LocalDateTime now = LocalDateTime.now();
+//    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+//    String formatDateTime = now.format(formatter);
 
-    Integer userID = 0;
+
 
 
     //Method for registration of new User
@@ -41,7 +39,7 @@ public class RegisterNewUser {
             consoleWriter.printMessage("\nEnter your username. It might be one word. Quantity of symbols is from 1 to 18: ");
             String userName = consoleReader.readAction();
 
-            if ((newUserInfoChecker.checkUserName(userName))) {
+            if ((newUserInfoChecker.checkUserName(userName))  && !(newUserInfoChecker.isUserNameOccupied(userName))) {
                 calculatorUser.setUserName(userName);
                 break;
 
@@ -54,7 +52,7 @@ public class RegisterNewUser {
             consoleWriter.printMessage("\nEnter your email: ");
             String userEmail = consoleReader.readAction();
 
-            if (newUserInfoChecker.checkUserEmail(userEmail)) {
+            if (newUserInfoChecker.checkUserEmail(userEmail) && !(newUserInfoChecker.isUserEmailOccupied(userEmail))) {
                 calculatorUser.setUserEmail(userEmail);
                 break;
 
@@ -77,33 +75,14 @@ public class RegisterNewUser {
             }
         }
 
-//        userID++;
-//
-//        calculatorUser.setUserID(userID);
-
-        consoleWriter.printMessage("\nHi, " + calculatorUser.getUserName() + "!\n" + "Your registration was successful!\n");
+        consoleWriter.printMessage("\nHi, " + calculatorUser.getUserName() + "!" + "Your registration was successful!\n");
 
         return calculatorUser;
     }
 }
 
 
-//    @Override
-//    public void saveNewUser(CalculatorUser calculatorUser){
-//        File file = new File("src/ConsoleCalculatorRev0/CalculatorUsers/UsersInfoList.txt");
-//        FileWriter fileWriter;
-//        try {
-//            fileWriter = new FileWriter(file, true);
-//            fileWriter.write("User ID= "+ userID +": user name= " + calculatorUser.getUserName() + ", user's email= " + calculatorUser.getUserEmail() +
-//                    ", password= " + calculatorUser.getUserPassword() + ", date and time of registration= " + formatDateTime +"\n");
-//            fileWriter.write(10);
-//            fileWriter.close();
-//        } catch (IOException e){
-//            e.printStackTrace();
-//
-//        }
-//
-//    }
+
 
 
 

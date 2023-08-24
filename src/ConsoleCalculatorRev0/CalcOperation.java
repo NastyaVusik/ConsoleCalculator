@@ -7,14 +7,14 @@ import java.time.format.DateTimeFormatter;
 public class CalcOperation {
 
     //Create variables
-    double num1;
-    double num2;
-    String action;
-    double result;
+    private double num1;
+   private double num2;
+    private String action;
+    private double result;
+    private Integer userID;
 
     //Date and time
-    String formatDateTime;
-
+    private String formatDateTime;
 
     public CalcOperation() {
 
@@ -26,12 +26,20 @@ public class CalcOperation {
         this.action = action;
     }
 
-    public CalcOperation(double num1, double num2, String action, double result, String formatDateTime) {
+    public CalcOperation(double num1, double num2, String action, Integer userID) {
+        this.num1 = num1;
+        this.num2 = num2;
+        this.action = action;
+        this.userID = userID;
+    }
+
+    public CalcOperation(double num1, double num2, String action, double result, String formatDateTime, Integer userID) {
         this.num1 = num1;
         this.num2 = num2;
         this.action = action;
         this.result = result;
         this.formatDateTime = formatDateTime;
+        this.userID = userID;
     }
 
 
@@ -81,9 +89,13 @@ public class CalcOperation {
         this.result = result;
     }
 
-//    public String getFormatDateTime() {
-//        return formatDateTime;
-//    }
+    public Integer getUserID() {
+        return userID;
+    }
+
+    public void setUserID(Integer userID) {
+        this.userID = userID;
+    }
 
     public void setFormatDateTime(String formatDateTime) {
         this.formatDateTime = formatDateTime;
@@ -95,7 +107,8 @@ public class CalcOperation {
                 ", num2 = " + num2 + "  " +
                 ", action = " + action + "  " +
                 ", result = " + result + "  " +
-                ", date is " + formatDateTime + " }";
+                ", date is " + formatDateTime +
+                ", user ID is " + userID + " }";
     }
 
 }

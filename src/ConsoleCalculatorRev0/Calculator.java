@@ -1,8 +1,9 @@
 package ConsoleCalculatorRev0;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import ConsoleCalculatorRev0.CalculationHistory.FileHistory;
+import ConsoleCalculatorRev0.CalculationHistory.History;
+import ConsoleCalculatorRev0.CalculationHistory.InMemoryHistory;
+import ConsoleCalculatorRev0.CalculatorUsers.CalculatorUser;
 
 public class Calculator {
 
@@ -22,51 +23,41 @@ public class Calculator {
 
 
     //Method for realisation of operations with numbers
-    public double calculateResult(CalcOperation calcOperation) {            //Pass object calcOperation instead (double num1, double num2, String action)
+    public double calculateResult(CalcOperation calcOperation, CalculatorUser calculatorUser) {            //Pass object calcOperation instead (double num1, double num2, String action)
 
         switch (calcOperation.getAction()) {
-            case ("sum") -> {
-                double res1 = calcOperation.num1 + calcOperation.num2;
-                CalcOperation calcOperation1 = new CalcOperation(calcOperation.num1, calcOperation.num2, calcOperation.action, res1, calcOperation.getFormatDateTime());                 //Create object of class CalcOperation
-                fileHistory.writeHistory(calcOperation1);
-                inMemoryHistory.writeHistory(calcOperation1);
+            case ("+") -> {
+                double res1 = calcOperation.getNum1() + calcOperation.getNum2();
+                CalcOperation calcOperation1 = new CalcOperation(calcOperation.getNum1(), calcOperation.getNum2(), calcOperation.getAction(), res1, calcOperation.getFormatDateTime(), calculatorUser.getUserID());                 //Create object of class CalcOperation
+                fileHistory.writeHistory(calcOperation1, calculatorUser);
+                inMemoryHistory.writeHistory(calcOperation1, calculatorUser);
                 return res1;
             }
-            case ("deduct") -> {
-                double res2 = calcOperation.num1 - calcOperation.num2;
-                CalcOperation calcOperation2 = new CalcOperation(calcOperation.num1, calcOperation.num2, calcOperation.action, res2, calcOperation.getFormatDateTime());                 //Create object of class CalcOperation
-                fileHistory.writeHistory(calcOperation2);
-                inMemoryHistory.writeHistory(calcOperation2);
+            case ("-") -> {
+                double res2 = calcOperation.getNum1() - calcOperation.getNum2();
+                CalcOperation calcOperation2 = new CalcOperation(calcOperation.getNum1(), calcOperation.getNum2(), calcOperation.getAction(), res2, calcOperation.getFormatDateTime(), calculatorUser.getUserID());                 //Create object of class CalcOperation
+                fileHistory.writeHistory(calcOperation2, calculatorUser);
+                inMemoryHistory.writeHistory(calcOperation2, calculatorUser);
                 return res2;
             }
-            case ("mult") -> {
-                double res3 = calcOperation.num1 * calcOperation.num2;
-                CalcOperation calcOperation3 = new CalcOperation(calcOperation.num1, calcOperation.num2, calcOperation.action, res3, calcOperation.getFormatDateTime());                 //Create object of class CalcOperation
-                fileHistory.writeHistory(calcOperation3);
-                inMemoryHistory.writeHistory(calcOperation3);
+            case ("*") -> {
+                double res3 = calcOperation.getNum1() * calcOperation.getNum2();
+                CalcOperation calcOperation3 = new CalcOperation(calcOperation.getNum1(), calcOperation.getNum2(), calcOperation.getAction(), res3, calcOperation.getFormatDateTime(), calculatorUser.getUserID());                 //Create object of class CalcOperation
+                fileHistory.writeHistory(calcOperation3, calculatorUser);
+                inMemoryHistory.writeHistory(calcOperation3, calculatorUser);
                 return res3;
             }
-            case ("divide") -> {
-                double res4 = calcOperation.num1 / calcOperation.num2;
-                CalcOperation calcOperation4 = new CalcOperation(calcOperation.num1, calcOperation.num2, calcOperation.action, res4, calcOperation.getFormatDateTime());                 //Create object of class CalcOperation
-                fileHistory.writeHistory(calcOperation4);
-                inMemoryHistory.writeHistory(calcOperation4);
+            case ("/") -> {
+                double res4 = calcOperation.getNum1() / calcOperation.getNum2();
+                CalcOperation calcOperation4 = new CalcOperation(calcOperation.getNum1(), calcOperation.getNum2(), calcOperation.getAction(), res4, calcOperation.getFormatDateTime(), calculatorUser.getUserID());                 //Create object of class CalcOperation
+                fileHistory.writeHistory(calcOperation4, calculatorUser);
+                inMemoryHistory.writeHistory(calcOperation4, calculatorUser);
                 return res4;
             }
         }
-            return 0;
-        }
+//        return 0;
+        throw new RuntimeException();
+    }
 
-
-
-//    //Getters and setters
-//
-//    public String getFormatDateTime() {
-//        return formatDateTime;
-//    }
-//
-//    public void setFormatDateTime(String formatDateTime) {
-//        this.formatDateTime = formatDateTime;
-//    }
 }
 

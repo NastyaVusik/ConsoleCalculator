@@ -1,0 +1,4 @@
+
+num1: 4.0 num2: 5.0 action: - =result: -1.0, Date and time of operation: 24-08-2023 00:08:25
+num1: 8.0 num2: 3.0 action: * =result: 24.0, Date and time of operation: 24-08-2023 00:08:46
+num1: 2.0 num2: 1.0 action: + =result: 3.0, Date and time of operation: 24-08-2023 00:09:53

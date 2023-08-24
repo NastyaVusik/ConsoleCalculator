@@ -90,11 +90,11 @@ public class CalculatorUser {
 
     @Override
     public String toString() {
-        return "\nUser's common information:\n" +
+        return "\nNew user's common information:\n" +
                  "1) Username is " + getUserName() + ";\n" +
-                "2) ID is" + getUserID() + ";\n" +
+                "2) ID is " + getUserID() + ";\n" +
                 "3) Email is " + getUserEmail() + ";\n" +
-                "4) Password is" + getUserEmail() + ";\n" +
+                "4) Password is " + getUserEmail() + ";\n" +
                 "5) Date and time of registration is " + getFormatDateTime() + "\n";
     }
 }

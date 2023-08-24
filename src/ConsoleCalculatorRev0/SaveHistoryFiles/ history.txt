@@ -1,3 +1,0 @@
-num1: 1.0 num2: 4.0 action: sum =result: 5.0, Date and time of operation: 23-08-2023 10:51:13
-num1: 1.0 num2: 2.0 action: sum =result: 3.0, Date and time of operation: 23-08-2023 10:55:34
-num1: 2.0 num2: 3.0 action: sum =result: 5.0, Date and time of operation: 23-08-2023 11:35:31

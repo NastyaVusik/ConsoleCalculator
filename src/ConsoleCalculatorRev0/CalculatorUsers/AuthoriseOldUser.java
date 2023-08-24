@@ -1,9 +1,11 @@
 package ConsoleCalculatorRev0.CalculatorUsers;
 
+import ConsoleCalculatorRev0.Calculator;
 import ConsoleCalculatorRev0.ConsoleReader;
 import ConsoleCalculatorRev0.ConsoleWriter;
 
 import java.io.*;
+import java.util.List;
 
 public class AuthoriseOldUser {
 
@@ -14,7 +16,7 @@ public class AuthoriseOldUser {
     private final ConsoleReader consoleReader = new ConsoleReader();
 
     //Create object of class SaveAllUsersInFile
-    SaveAllUsersInFile saveAllUsersInFile = new SaveAllUsersInFile();
+    SaveNewUserInFile saveAllUsersInFile = new SaveNewUserInFile();
 
 
     //Method for authorisation of old user
@@ -27,26 +29,26 @@ public class AuthoriseOldUser {
             consoleWriter.printMessage("\nEnter your password: ");
             String userPassword = consoleReader.readAction();
 
-            File filePath = new File("src/ConsoleCalculatorRev0/CalculatorUsers/UsersInfoList.txt");
-            try (BufferedReader bReader =new BufferedReader(new FileReader(filePath))){
-                String line = bReader.readLine();
-                while (line != null) {
-                    line = bReader.readLine();
+            List<CalculatorUser> calculatorUserList =  saveAllUsersInFile.getUsersInfoArrayList();
+            CalculatorUser oldUser = null;
 
-                    if (userName.equalsIgnoreCase(saveAllUsersInFile.calculatorUser.getUserName()) &&
-                            userPassword.equals(saveAllUsersInFile.calculatorUser.getUserPassword())) {
+            for(CalculatorUser user : calculatorUserList){
+                boolean match = (userName.equalsIgnoreCase(user.getUserName()) && userPassword.equals(user.getUserPassword()));
 
-                        consoleWriter.printMessage("Hi, " + saveAllUsersInFile.calculatorUser.getUserName() + " with ID = "
-                                + saveAllUsersInFile.calculatorUser.getUserID() + "!" + "Registration is successful!\n");
+                if(match){
+                    oldUser = user;
+            }
+
+                    if (oldUser != null) {
+                        consoleWriter.printMessage("Hi, " + oldUser.getUserName() + " with ID = "
+                                + oldUser.getUserID() + "!" + "Registration is successful!\n");
                     } else {
                         consoleWriter.printMessage("\nYou username or password are wrong. Please, try again.\n");
                     }
 
-                    return saveAllUsersInFile.calculatorUser;
+                    return oldUser;
                 }
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
-            }
+
         }
     }
 }

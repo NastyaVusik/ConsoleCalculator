@@ -27,7 +27,7 @@ public class StartApplication {
     RegisterNewUser registerNewUser = new RegisterNewUser();
 
     //Create object of class SaveAllUsersInFile
-    SaveAllUsersInFile saveAllUsersInFile = new SaveAllUsersInFile();
+    SaveNewUserInFile saveAllUsersInFile = new SaveNewUserInFile();
 
     AuthoriseOldUser authoriseOldUser = new AuthoriseOldUser();
     SaveNewUserInList saveNewUserInList = new SaveNewUserInList();
@@ -40,28 +40,35 @@ public class StartApplication {
     public void start(){
 
         consoleWriter.printMessage("\nEnter 1 - if you want to sign up." +
-                "\nEnter 2 - if you want to login");
+                "\nEnter 2 - if you want to login" +
+        "\nEnter 0 - if you want to exit");
         int choice = (int) consoleReader.readNumbers();
 
-        if(choice == 1){
-            registerNewUser.registerNewUser();
-           saveNewUserInList.saveNewUser(calculatorUser);
-//            try {
-//                saveAllUsersInFile.saveAllUserInFile();
-//            } catch (FileNotFoundException e) {
-//                throw new RuntimeException(e);
-//            }
 
+        if(choice == 1){
+           calculatorUser = registerNewUser.registerNewUser();
+           saveNewUserInList.saveNewUser(calculatorUser);
+            saveNewUserInList.getUsersInfoArrayList().stream().forEach(user -> System.out.println(user));
+
+                saveAllUsersInFile.saveNewUser(calculatorUser);
+                saveAllUsersInFile.getUsersInfoArrayList().stream().forEach(user -> System.out.println(user));
         }
 
-        if(choice == 2){
-            try {
-                authoriseOldUser.checkUsernamePassword();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+        if(choice == 2) {
+            while (true) {
+                try {
+                  authoriseOldUser.checkUsernamePassword();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+
+           else if(choice == 0){
+               return;
             }
 
-        }
+
 
 
         while (true){
@@ -74,12 +81,12 @@ public class StartApplication {
             consoleWriter.printMessage("Enter the operation with this numbers: ");
             String action = consoleReader.readAction();
 
-            double result = calculator.calculateResult(new CalcOperation(num1, num2, action));                  //(num1, num2, action)
+            double result = calculator.calculateResult(new CalcOperation(num1, num2, action), calculatorUser);                  //(num1, num2, action)
             consoleWriter.printMessage("Result of calculation: " + result);
 
             consoleWriter.printMessage("Date and time of operation: " + calcOperation.getFormatDateTime());
 
-            //Continue calculation?
+
             consoleWriter.printMessage("\n\nEnter 0 - if you want exit. " +
                     "\nEnter 1 - continue. " +
                     "\nEnter 2 - show history of calculation.");
