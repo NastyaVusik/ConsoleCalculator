@@ -22,15 +22,18 @@ public class SaveNewUserInFile implements SaveNewUser {
     Integer lastID = 0;
 
 
-    public SaveNewUserInFile() {
-        if(!getUsersInfoArrayList().isEmpty()) {
-            lastID = getUsersInfoArrayList().size();
-        }
-        else {
-            lastID = 0;
-        }
-    }
+//    public SaveNewUserInFile() {
+//        if(!getUsersInfoArrayList().isEmpty()) {
+//            lastID = getUsersInfoArrayList().size();
+//        }
+//        else {
+//            lastID = 0;
+//        }
+//    }
 
+    public SaveNewUserInFile() {
+        lastID = getUsersInfoArrayList().size();
+    }
 
     @Override
     public void saveNewUser(CalculatorUser calculatorUser) {
@@ -55,13 +58,14 @@ public class SaveNewUserInFile implements SaveNewUser {
 
         List<CalculatorUser> usersInfoFromFileToList = new ArrayList<>();
 //        List<CalculatorUser> Optional = new ArrayList<>();
-        if (!usersInfoFromFileToList.isEmpty()) {
+
             try {
                 List<String> list = Files.readAllLines(
                         new File(filePath).toPath());
 
                 list.stream().forEach(s -> {
                     String[] fields = s.split(" ");
+
                     CalculatorUser calculatorUser = new CalculatorUser();
                     calculatorUser.setUserID(Integer.valueOf(fields[0]));
                     calculatorUser.setUserName(fields[1]);
@@ -74,13 +78,15 @@ public class SaveNewUserInFile implements SaveNewUser {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            return usersInfoFromFileToList;
-        }
-//        else return Optional;
-        else return null;
+//            return usersInfoFromFileToList;
+//        }
+//       else return Optional;
+//        else return null;
+
+                    return usersInfoFromFileToList;
 
     }
-    }
+}
 
 
 

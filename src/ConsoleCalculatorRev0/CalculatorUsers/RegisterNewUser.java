@@ -23,14 +23,6 @@ public class RegisterNewUser {
 
 
 
-    //Date and time
-//    LocalDateTime now = LocalDateTime.now();
-//    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-//    String formatDateTime = now.format(formatter);
-
-
-
-
     //Method for registration of new User
     public CalculatorUser registerNewUser() {
         CalculatorUser calculatorUser = new CalculatorUser();

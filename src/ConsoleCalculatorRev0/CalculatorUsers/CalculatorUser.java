@@ -27,6 +27,12 @@ public class CalculatorUser {
         this.userID = 0;
     }
 
+    public CalculatorUser(String userName, String userEmail, String userPassword) {
+        this.userName = userName;
+        this.userEmail = userEmail;
+        this.userPassword = userPassword;
+    }
+
 
     public CalculatorUser(String userName, String userEmail, String userPassword, Integer userID) {
         this.userName = userName;
@@ -94,7 +100,7 @@ public class CalculatorUser {
                  "1) Username is " + getUserName() + ";\n" +
                 "2) ID is " + getUserID() + ";\n" +
                 "3) Email is " + getUserEmail() + ";\n" +
-                "4) Password is " + getUserEmail() + ";\n" +
+                "4) Password is " + getUserPassword() + ";\n" +
                 "5) Date and time of registration is " + getFormatDateTime() + "\n";
     }
 }

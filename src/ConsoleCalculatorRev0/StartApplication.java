@@ -1,5 +1,7 @@
 package ConsoleCalculatorRev0;
 
+import ConsoleCalculatorRev0.CalculationHistory.InMemoryHistory;
+import ConsoleCalculatorRev0.CalculationHistory.SaveHistoryFiles.PrintMemoryHistoryToConsole;
 import ConsoleCalculatorRev0.CalculatorUsers.*;
 
 import java.io.FileNotFoundException;
@@ -19,9 +21,11 @@ public class StartApplication {
 
     //Create object of class CalculatorUser
     CalculatorUser calculatorUser;
+
     public StartApplication(CalculatorUser calculatorUser){
         this.calculatorUser = calculatorUser;
     }
+
 
     //Create object of class RegisterNewUser
     RegisterNewUser registerNewUser = new RegisterNewUser();
@@ -31,6 +35,7 @@ public class StartApplication {
 
     AuthoriseOldUser authoriseOldUser = new AuthoriseOldUser();
     SaveNewUserInList saveNewUserInList = new SaveNewUserInList();
+    PrintMemoryHistoryToConsole printMemoryHistoryToConsole;
 
 
 
@@ -81,10 +86,12 @@ public class StartApplication {
             consoleWriter.printMessage("Enter the operation with this numbers: ");
             String action = consoleReader.readAction();
 
-            double result = calculator.calculateResult(new CalcOperation(num1, num2, action), calculatorUser);                  //(num1, num2, action)
+            double result = calculator.calculateResult(new CalcOperation(num1, num2, action));
             consoleWriter.printMessage("Result of calculation: " + result);
 
             consoleWriter.printMessage("Date and time of operation: " + calcOperation.getFormatDateTime());
+
+            consoleWriter.printMessage("User ID is " + calculatorUser.getUserID());
 
 
             consoleWriter.printMessage("\n\nEnter 0 - if you want exit. " +
@@ -100,7 +107,8 @@ public class StartApplication {
                     continue;
                 }
                 if(number == 2){
-calculator.inMemoryHistory.printArrayList();
+printMemoryHistoryToConsole.printArrayList();
+
                 }
 
         }
