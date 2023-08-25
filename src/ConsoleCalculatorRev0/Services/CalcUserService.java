@@ -1,35 +1,40 @@
-package ConsoleCalculatorRev0.CalculatorUsers;
+package ConsoleCalculatorRev0.Services;
 
-import ConsoleCalculatorRev0.CalcOperation;
-import ConsoleCalculatorRev0.ConsoleReader;
-import ConsoleCalculatorRev0.ConsoleWriter;
+import ConsoleCalculatorRev0.CalculatorUsers.NewUserInfoChecker;
+import ConsoleCalculatorRev0.CalculatorUsers.SaveNewUserInFile;
+import ConsoleCalculatorRev0.IO.ConsoleReader;
+import ConsoleCalculatorRev0.IO.ConsoleWriter;
+import ConsoleCalculatorRev0.Objects.CalculatorUser;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
-public class RegisterNewUser {
+public class CalcUserService {
 
-    //Create object of class ConsoleWriter
     private final ConsoleWriter consoleWriter = new ConsoleWriter();
 
-    //Create object of class ConsoleReader
     private final ConsoleReader consoleReader = new ConsoleReader();
 
-    //Create object of class NewUserInfoChecker
     NewUserInfoChecker newUserInfoChecker = new NewUserInfoChecker();
 
+    SaveNewUserInFile saveNewUserInFile = new SaveNewUserInFile();
 
 
-    //Method for registration of new User
-    public CalculatorUser registerNewUser() {
+    //Date and time
+    LocalDateTime registeredAt = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+    String formatDateTime = registeredAt.format(formatter);
+
+
+
+    public CalculatorUser registerNewUser(String userName, String userEmail, String userPassword) {
+
         CalculatorUser calculatorUser = new CalculatorUser();
 
         while (true) {
             consoleWriter.printMessage("\nEnter your username. It might be one word. Quantity of symbols is from 1 to 18: ");
-            String userName = consoleReader.readAction();
+            userName = consoleReader.readAction();
 
             if ((newUserInfoChecker.checkUserName(userName))  && !(newUserInfoChecker.isUserNameOccupied(userName))) {
                 calculatorUser.setUserName(userName);
@@ -42,7 +47,7 @@ public class RegisterNewUser {
 
         while (true) {
             consoleWriter.printMessage("\nEnter your email: ");
-            String userEmail = consoleReader.readAction();
+           userEmail = consoleReader.readAction();
 
             if (newUserInfoChecker.checkUserEmail(userEmail) && !(newUserInfoChecker.isUserEmailOccupied(userEmail))) {
                 calculatorUser.setUserEmail(userEmail);
@@ -56,7 +61,7 @@ public class RegisterNewUser {
         while (true) {
             consoleWriter.printMessage("\nEnter your password. Length of password is more 6 symbols. There is required at least one digit," +
                     " one upper case letter, one ony other special symbol: ");
-            String userPassword = consoleReader.readAction();
+            userPassword = consoleReader.readAction();
 
             if (newUserInfoChecker.checkUserPassword(userPassword)) {
                 calculatorUser.setUserPassword(userPassword);
@@ -69,12 +74,37 @@ public class RegisterNewUser {
 
         consoleWriter.printMessage("\nHi, " + calculatorUser.getUserName() + "!" + "Your registration was successful!\n");
 
+        saveNewUserInFile.saveNewUser(calculatorUser);                                  //Is it good???????????????????????????
+
         return calculatorUser;
     }
+
+
+    //Method for getting old user by userName and userPassword
+    public Optional<CalculatorUser> logInCalculatorUser(String userName, String userPassword){          //LogIn
+       return saveNewUserInFile.getOldUserFromList(userName, userPassword);
+    }
+
+
+    //Method for getting old user by ID
+    public CalculatorUser getCalculatorUserByID(Integer userID){
+        return saveNewUserInFile.getOldUserByID(userID);
+    }
+
+
+    //Method to get Date and time
+    public String getFormatDateTime() {
+
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        formatDateTime = now.format(formatter);
+
+        return formatDateTime;
+    }
+
+
+    public void setFormatDateTime(String formatDateTime) {
+        this.formatDateTime = formatDateTime;
+    }
+
 }
-
-
-
-
-
-

@@ -1,9 +1,8 @@
 package ConsoleCalculatorRev0.CalculationHistory;
 
-import ConsoleCalculatorRev0.CalcOperation;
-import ConsoleCalculatorRev0.CalculationHistory.History;
-import ConsoleCalculatorRev0.CalculatorUsers.CalculatorUser;
-import ConsoleCalculatorRev0.UserSession.CurrentSession;
+import ConsoleCalculatorRev0.Objects.CalcOperation;
+import ConsoleCalculatorRev0.Objects.CalculatorUser;
+import ConsoleCalculatorRev0.UserSession.ConsoleSession;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -11,7 +10,7 @@ import java.io.IOException;
 
 public class FileHistory implements History {
 
-    CurrentSession currentSession = new CurrentSession();
+    ConsoleSession currentSession = new ConsoleSession();
 
 
     //Write history of calculations

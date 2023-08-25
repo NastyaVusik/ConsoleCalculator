@@ -1,10 +1,14 @@
 package ConsoleCalculatorRev0;
 
-import ConsoleCalculatorRev0.CalculationHistory.InMemoryHistory;
-import ConsoleCalculatorRev0.CalculationHistory.SaveHistoryFiles.PrintMemoryHistoryToConsole;
+import ConsoleCalculatorRev0.CalculationHistory.PrintMemoryHistoryToConsole;
 import ConsoleCalculatorRev0.CalculatorUsers.*;
+import ConsoleCalculatorRev0.IO.ConsoleReader;
+import ConsoleCalculatorRev0.IO.ConsoleWriter;
+import ConsoleCalculatorRev0.Objects.CalcOperation;
+import ConsoleCalculatorRev0.Objects.CalculatorUser;
+import ConsoleCalculatorRev0.Services.LoginOldUserService;
+import ConsoleCalculatorRev0.Services.OperationService;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class StartApplication {
@@ -16,7 +20,7 @@ public class StartApplication {
     private final ConsoleReader consoleReader = new ConsoleReader();
 
     //Create object of class Calculator
-    Calculator calculator = new Calculator();
+    OperationService calculator = new OperationService();
     CalcOperation calcOperation = new CalcOperation();
 
     //Create object of class CalculatorUser
@@ -33,7 +37,7 @@ public class StartApplication {
     //Create object of class SaveAllUsersInFile
     SaveNewUserInFile saveAllUsersInFile = new SaveNewUserInFile();
 
-    AuthoriseOldUser authoriseOldUser = new AuthoriseOldUser();
+    LoginOldUserService authoriseOldUser = new LoginOldUserService();
     SaveNewUserInList saveNewUserInList = new SaveNewUserInList();
     PrintMemoryHistoryToConsole printMemoryHistoryToConsole;
 

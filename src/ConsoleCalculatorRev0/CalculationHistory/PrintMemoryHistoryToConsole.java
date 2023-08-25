@@ -1,7 +1,7 @@
-package ConsoleCalculatorRev0.CalculationHistory.SaveHistoryFiles;
+package ConsoleCalculatorRev0.CalculationHistory;
 
 import ConsoleCalculatorRev0.CalculationHistory.InMemoryHistory;
-import ConsoleCalculatorRev0.ConsoleWriter;
+import ConsoleCalculatorRev0.IO.ConsoleWriter;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package ConsoleCalculatorRev0;
+package ConsoleCalculatorRev0.IO;
 
 import java.util.Scanner;
 

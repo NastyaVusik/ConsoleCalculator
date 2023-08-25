@@ -1,4 +1,4 @@
-package ConsoleCalculatorRev0;
+package ConsoleCalculatorRev0.IO;
 
 public interface ScanReader {
     double readNumbers();

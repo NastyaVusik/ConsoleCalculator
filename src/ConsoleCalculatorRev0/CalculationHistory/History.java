@@ -1,9 +1,7 @@
 package ConsoleCalculatorRev0.CalculationHistory;
 
-import ConsoleCalculatorRev0.CalcOperation;
-import ConsoleCalculatorRev0.CalculatorUsers.CalculatorUser;
-
-import java.time.LocalDate;
+import ConsoleCalculatorRev0.Objects.CalcOperation;
+import ConsoleCalculatorRev0.Objects.CalculatorUser;
 
 public interface History {
     void writeHistory(CalcOperation calcOperation);

@@ -1,10 +1,10 @@
 package ConsoleCalculatorRev0.CalculationHistory;
 
-import ConsoleCalculatorRev0.CalcOperation;
+import ConsoleCalculatorRev0.Objects.CalcOperation;
 
-import ConsoleCalculatorRev0.CalculatorUsers.CalculatorUser;
-import ConsoleCalculatorRev0.ConsoleWriter;
-import ConsoleCalculatorRev0.UserSession.CurrentSession;
+import ConsoleCalculatorRev0.Objects.CalculatorUser;
+import ConsoleCalculatorRev0.IO.ConsoleWriter;
+import ConsoleCalculatorRev0.UserSession.ConsoleSession;
 
 import java.util.ArrayList;
 
@@ -16,7 +16,7 @@ public class InMemoryHistory implements History {
     //Create object of class ConsoleWriter
     ConsoleWriter consoleWriter = new ConsoleWriter();
 
-    CurrentSession currentSession = new CurrentSession();
+    ConsoleSession currentSession = new ConsoleSession();
 
 
 
@@ -37,17 +37,17 @@ public class InMemoryHistory implements History {
 
 
 
-    //Method for print ArrayList in console
-    public void printArrayList(){
-
-        consoleWriter.printMessage("\n\nHistory of calculation in ArrayList:\n ");
-
-        for(String history : memoryHistory){
-            consoleWriter.printMessage(history);
-        }
-
-        consoleWriter.printMessage("\n\n");
-    }
+//    //Method for print ArrayList in console
+//    public void printArrayList(){
+//
+//        consoleWriter.printMessage("\n\nHistory of calculation in ArrayList:\n ");
+//
+//        for(String history : memoryHistory){
+//            consoleWriter.printMessage(history);
+//        }
+//
+//        consoleWriter.printMessage("\n\n");
+//    }
 
 
 }

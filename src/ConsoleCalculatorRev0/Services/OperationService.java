@@ -1,17 +1,11 @@
-package ConsoleCalculatorRev0;
+package ConsoleCalculatorRev0.Services;
 
+import ConsoleCalculatorRev0.Objects.CalcOperation;
 import ConsoleCalculatorRev0.CalculationHistory.FileHistory;
 import ConsoleCalculatorRev0.CalculationHistory.History;
 import ConsoleCalculatorRev0.CalculationHistory.InMemoryHistory;
-import ConsoleCalculatorRev0.CalculatorUsers.CalculatorUser;
 
-public class Calculator {
-
-    //Date and time
-
-//    LocalDateTime now = LocalDateTime.now();
-//    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-//    String formatDateTime = now.format(formatter);
+public class OperationService {
 
 
     //Create object, which belongs to class FileHistory
