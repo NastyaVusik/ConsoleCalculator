@@ -4,7 +4,7 @@ import ConsoleCalculatorRev0.Objects.CalcOperation;
 
 import ConsoleCalculatorRev0.Objects.CalculatorUser;
 import ConsoleCalculatorRev0.IO.ConsoleWriter;
-import ConsoleCalculatorRev0.UserSession.ConsoleSession;
+import ConsoleCalculatorRev0.UserSession.ConsoleSessions;
 
 import java.util.ArrayList;
 
@@ -16,9 +16,11 @@ public class InMemoryHistory implements History {
     //Create object of class ConsoleWriter
     ConsoleWriter consoleWriter = new ConsoleWriter();
 
-    ConsoleSession currentSession = new ConsoleSession();
+    ConsoleSessions currentSession = new ConsoleSessions();
 
-
+    public ArrayList<String> getMemoryHistory() {
+        return memoryHistory;
+    }
 
     //Method for writing history of calculations in memory
     @Override
@@ -32,7 +34,7 @@ public class InMemoryHistory implements History {
     @Override
     public void writeHistoryWithUser(CalcOperation calcOperation, CalculatorUser calculatorUser){
         memoryHistory.add("num1: " + calcOperation.getNum1() + " num2: " + calcOperation.getNum2() + " action: " + calcOperation.getAction() +
-                " =result: " + calcOperation.getResult() + ", Date and time of operation: " + calcOperation.getFormatDateTime() +", User ID: " + currentSession.getCurrentUser(calculatorUser));
+                " =result: " + calcOperation.getResult() + ", Date and time of operation: " + calcOperation.getFormatDateTime() +", User ID: " + currentSession.getCurrentUser().getUserID());
     }
 
 

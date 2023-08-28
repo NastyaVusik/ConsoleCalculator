@@ -5,6 +5,9 @@ import ConsoleCalculatorRev0.CalculationHistory.FileHistory;
 import ConsoleCalculatorRev0.CalculationHistory.History;
 import ConsoleCalculatorRev0.CalculationHistory.InMemoryHistory;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class OperationService {
 
 
@@ -14,6 +17,7 @@ public class OperationService {
 
     //Create object, which belongs to class InMemoryHistory
     History inMemoryHistory = new InMemoryHistory();
+
 
 
     //Method for realisation of operations with numbers

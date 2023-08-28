@@ -19,12 +19,7 @@ public class MainCalculation {
 
     public static void main(String[] args) {
 
-        //Create object of class CalculatorUser
-        CalculatorUser calculatorUser = new CalculatorUser();
-
-
-        //Create object of class StartApplication
-        StartApplication startApplication = new StartApplication(calculatorUser);
+        StartApplication startApplication = new StartApplication();
 
 
         //Begin and enjoy!!!

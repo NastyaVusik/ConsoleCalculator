@@ -13,76 +13,27 @@ import java.util.Optional;
 public class CalcUserService {
 
     private final ConsoleWriter consoleWriter = new ConsoleWriter();
-
     private final ConsoleReader consoleReader = new ConsoleReader();
-
-    NewUserInfoChecker newUserInfoChecker = new NewUserInfoChecker();
-
     SaveNewUserInFile saveNewUserInFile = new SaveNewUserInFile();
+    LoginOldUserService loginOldUserService = new LoginOldUserService();
+    RegisterNewUserService registerNewUserService = new RegisterNewUserService();
 
 
-    //Date and time
-    LocalDateTime registeredAt = LocalDateTime.now();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-    String formatDateTime = registeredAt.format(formatter);
+//    //Date and time
+//    LocalDateTime registeredAt = LocalDateTime.now();
+//    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+//    String formatDateTime = registeredAt.format(formatter);
 
 
 
-    public CalculatorUser registerNewUser(String userName, String userEmail, String userPassword) {
-
-        CalculatorUser calculatorUser = new CalculatorUser();
-
-        while (true) {
-            consoleWriter.printMessage("\nEnter your username. It might be one word. Quantity of symbols is from 1 to 18: ");
-            userName = consoleReader.readAction();
-
-            if ((newUserInfoChecker.checkUserName(userName))  && !(newUserInfoChecker.isUserNameOccupied(userName))) {
-                calculatorUser.setUserName(userName);
-                break;
-
-            } else {
-                consoleWriter.printMessage("\nUsername isn't correct or this username has been already registered. Please, try again...");
-            }
-        }
-
-        while (true) {
-            consoleWriter.printMessage("\nEnter your email: ");
-           userEmail = consoleReader.readAction();
-
-            if (newUserInfoChecker.checkUserEmail(userEmail) && !(newUserInfoChecker.isUserEmailOccupied(userEmail))) {
-                calculatorUser.setUserEmail(userEmail);
-                break;
-
-            } else {
-                consoleWriter.printMessage("\nEmail's format isn't correct or user with this email we has been already registered. Please, enter another email...");
-            }
-        }
-
-        while (true) {
-            consoleWriter.printMessage("\nEnter your password. Length of password is more 6 symbols. There is required at least one digit," +
-                    " one upper case letter, one ony other special symbol: ");
-            userPassword = consoleReader.readAction();
-
-            if (newUserInfoChecker.checkUserPassword(userPassword)) {
-                calculatorUser.setUserPassword(userPassword);
-                break;
-
-            } else {
-                consoleWriter.printMessage("\nThe password isn't correct. Please, try again...");
-            }
-        }
-
-        consoleWriter.printMessage("\nHi, " + calculatorUser.getUserName() + "!" + "Your registration was successful!\n");
-
-        saveNewUserInFile.saveNewUser(calculatorUser);                                  //Is it good???????????????????????????
-
-        return calculatorUser;
+    public CalculatorUser signUpNewUser(String userName, String userEmail, String userPassword) {
+        return registerNewUserService.registerNewUser(userName, userEmail, userPassword);
     }
 
 
     //Method for getting old user by userName and userPassword
     public Optional<CalculatorUser> logInCalculatorUser(String userName, String userPassword){          //LogIn
-       return saveNewUserInFile.getOldUserFromList(userName, userPassword);
+       return loginOldUserService.getOldUserFromList(userName, userPassword);
     }
 
 
@@ -92,19 +43,21 @@ public class CalcUserService {
     }
 
 
-    //Method to get Date and time
-    public String getFormatDateTime() {
 
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-        formatDateTime = now.format(formatter);
+//    //Method to get Date and time
+//    public String getFormatDateTime() {
+//
+//        LocalDateTime now = LocalDateTime.now();
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+//        formatDateTime = now.format(formatter);
+//
+//        return formatDateTime;
+//    }
+//
+//
+//    public void setFormatDateTime(String formatDateTime) {
+//        this.formatDateTime = formatDateTime;
+//    }
 
-        return formatDateTime;
-    }
-
-
-    public void setFormatDateTime(String formatDateTime) {
-        this.formatDateTime = formatDateTime;
-    }
 
 }

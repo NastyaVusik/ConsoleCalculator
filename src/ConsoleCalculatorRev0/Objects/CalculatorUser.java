@@ -3,6 +3,8 @@ package ConsoleCalculatorRev0.Objects;
 
 
 import ConsoleCalculatorRev0.Services.CalcUserService;
+import ConsoleCalculatorRev0.Services.RegisterNewUserService;
+import ConsoleCalculatorRev0.Services.RegistrationDate;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -103,14 +105,14 @@ public class CalculatorUser {
     @Override
     public String toString() {
 
-        //Create object of class CalculatorUser
-        CalcUserService calcUserService = new CalcUserService();
+        //Create object of class RegistrationDate
+        RegistrationDate registrationDate = new RegistrationDate();
 
         return "\nNew user's common information:\n" +
                  "1) Username is " + getUserName() + ";\n" +
                 "2) ID is " + getUserID() + ";\n" +
                 "3) Email is " + getUserEmail() + ";\n" +
                 "4) Password is " + getUserPassword() + ";\n" +
-                "5) Date and time of registration is " + calcUserService.getFormatDateTime() + "\n";
+                "5) Date and time of registration is " + registrationDate.getFormatDateTime() + "\n";
     }
 }

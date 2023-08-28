@@ -1,84 +1,133 @@
 package ConsoleCalculatorRev0;
 
 import ConsoleCalculatorRev0.CalculationHistory.PrintMemoryHistoryToConsole;
-import ConsoleCalculatorRev0.CalculatorUsers.*;
 import ConsoleCalculatorRev0.IO.ConsoleReader;
 import ConsoleCalculatorRev0.IO.ConsoleWriter;
 import ConsoleCalculatorRev0.Objects.CalcOperation;
 import ConsoleCalculatorRev0.Objects.CalculatorUser;
-import ConsoleCalculatorRev0.Services.LoginOldUserService;
+import ConsoleCalculatorRev0.Services.CalcUserService;
 import ConsoleCalculatorRev0.Services.OperationService;
+import ConsoleCalculatorRev0.Services.RegisterNewUserService;
+import ConsoleCalculatorRev0.UserSession.ConsoleSessions;
 
-import java.io.IOException;
+import java.util.List;
 
 public class StartApplication {
 
-    //Create object of class ConsoleWriter
     private final ConsoleWriter consoleWriter = new ConsoleWriter();
-
-    //Create object of class ConsoleReader
     private final ConsoleReader consoleReader = new ConsoleReader();
-
-    //Create object of class Calculator
     OperationService calculator = new OperationService();
     CalcOperation calcOperation = new CalcOperation();
+ConsoleSessions consoleSessions = new ConsoleSessions();
+CalcUserService calcUserService = new CalcUserService();
 
-    //Create object of class CalculatorUser
     CalculatorUser calculatorUser;
+    PrintMemoryHistoryToConsole printMemoryHistoryToConsole;
 
-    public StartApplication(CalculatorUser calculatorUser){
-        this.calculatorUser = calculatorUser;
+    private boolean excistsUser= true;
+
+
+//public void start(){
+//while (excistsUser){
+//    if (consoleSessions.getCurrentUser() == null){
+//        showAuthorisationMenu();
+//    }
+//   else showUserMenu();
+//}
+//}
+
+    public void start(){
+
+            if (consoleSessions.getCurrentUser() == null){
+                showAuthorisationMenu();
+            }
+            else showUserMenu();
+        }
+    
+
+
+    private void showAuthorisationMenu() {
+        consoleWriter.printMessage("Enter:\n 0 - exit;\n 1 - sign up;\n 2 - login");
     }
 
 
-    //Create object of class RegisterNewUser
-    RegisterNewUser registerNewUser = new RegisterNewUser();
-
-    //Create object of class SaveAllUsersInFile
-    SaveNewUserInFile saveAllUsersInFile = new SaveNewUserInFile();
-
-    LoginOldUserService authoriseOldUser = new LoginOldUserService();
-    SaveNewUserInList saveNewUserInList = new SaveNewUserInList();
-    PrintMemoryHistoryToConsole printMemoryHistoryToConsole;
+    private void showUserMenu() {
+        consoleWriter.printMessage("Enter:\n 0 - exit;\n 1 - sign up;\n 2 - login;\n 3 - use calculator");
+    }
 
 
 
+    private void makeAuthorisationAction(){
+    boolean excistsUser1 = true;
+
+        while (excistsUser1){
+
+    showAuthorisationMenu();
+    double choice = consoleReader.readNumbers();
+
+  switch ((int) choice){
+       case (0) -> {
+           excistsUser = false;
+           excistsUser1 = false;
+//           consoleSessions.logOutUser();
+           break;
+       }
+       case (1) -> {
+          calcUserService.signUpNewUser(calculatorUser.getUserName(), calculatorUser.getUserEmail(), calculatorUser.getUserPassword());
+           break;
+       }
+       case (2) -> {
+           calcUserService.logInCalculatorUser(calculatorUser.getUserName(), calculatorUser.getUserPassword());
+           break;
+       }
+      default -> throw new IllegalStateException("Unexpected value: " + (int) choice);
+
+   }
+
+    }
+
+    }
 
 
-    //Method for repeating action with object of class Calculator
-    public void start(){
 
-        consoleWriter.printMessage("\nEnter 1 - if you want to sign up." +
-                "\nEnter 2 - if you want to login" +
-        "\nEnter 0 - if you want to exit");
-        int choice = (int) consoleReader.readNumbers();
+    private void makeUserAction(){
+        boolean excistsUser1 = true;
 
+        while (excistsUser1){
 
-        if(choice == 1){
-           calculatorUser = registerNewUser.registerNewUser();
-           saveNewUserInList.saveNewUser(calculatorUser);
-            saveNewUserInList.getUsersInfoArrayList().stream().forEach(user -> System.out.println(user));
+            showUserMenu();
+            double choice = consoleReader.readNumbers();
 
-                saveAllUsersInFile.saveNewUser(calculatorUser);
-                saveAllUsersInFile.getUsersInfoArrayList().stream().forEach(user -> System.out.println(user));
-        }
-
-        if(choice == 2) {
-            while (true) {
-                try {
-                  authoriseOldUser.checkUsernamePassword();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+            switch ((int) choice){
+                case (0) -> {
+//                    excistsUser = false;
+//                    excistsUser1 = false;
+           consoleSessions.logOutUser();
+                    break;
                 }
+                case (1) -> {
+                    calcUserService.signUpNewUser(calculatorUser.getUserName(), calculatorUser.getUserEmail(), calculatorUser.getUserPassword());
+                    break;
+                }
+                case (2) -> {
+                    calcUserService.logInCalculatorUser(calculatorUser.getUserName(), calculatorUser.getUserPassword());
+                    break;
+                }
+                case (3) -> {
+                    calculate();
+                }
+
+                default -> throw new IllegalStateException("Unexpected value: " + (int) choice);
             }
+
         }
 
-           else if(choice == 0){
-               return;
-            }
+    }
 
 
 
+
+    private void calculate(){
 
         while (true){
             consoleWriter.printMessage("Enter the number num1: ");
@@ -107,14 +156,19 @@ public class StartApplication {
                 consoleWriter.printMessage("Goodbye...");
                 break;
             }
-                if(number == 1){
-                    continue;
-                }
-                if(number == 2){
-printMemoryHistoryToConsole.printArrayList();
+            if(number == 1){
+                continue;
+            }
+            if(number == 2){
+//                PrintMemoryHistoryToConsole.printArrayList();
+                consoleWriter.printMessage("Don't know");
 
                 }
+
+            }
 
         }
+
     }
-}
+
+

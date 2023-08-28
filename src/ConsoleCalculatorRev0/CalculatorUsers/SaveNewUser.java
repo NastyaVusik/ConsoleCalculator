@@ -9,5 +9,4 @@ public interface SaveNewUser {
     void saveNewUser(CalculatorUser calculatorUser);
     List<CalculatorUser> addUsersInfoToArrayList();
 
-    Optional<CalculatorUser> getOldUserFromList(String userName, String userPassword);
 }

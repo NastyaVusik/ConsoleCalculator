@@ -2,7 +2,7 @@ package ConsoleCalculatorRev0.CalculationHistory;
 
 import ConsoleCalculatorRev0.Objects.CalcOperation;
 import ConsoleCalculatorRev0.Objects.CalculatorUser;
-import ConsoleCalculatorRev0.UserSession.ConsoleSession;
+import ConsoleCalculatorRev0.UserSession.ConsoleSessions;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class FileHistory implements History {
 
-    ConsoleSession currentSession = new ConsoleSession();
+    ConsoleSessions currentSession = new ConsoleSessions();
 
 
     //Write history of calculations
@@ -41,7 +41,7 @@ public class FileHistory implements History {
         try {
             fileWriter = new FileWriter(file, true);
             fileWriter.write("num1: " + calcOperation.getNum1() + " num2: " + calcOperation.getNum2() + " action: " + calcOperation.getAction() +
-                    " result: " + calcOperation.getResult() + ", Date and time of operation: " + calcOperation.getFormatDateTime() + ", User ID: " + currentSession.getCurrentUser(calculatorUser));
+                    " result: " + calcOperation.getResult() + ", Date and time of operation: " + calcOperation.getFormatDateTime() + ", User ID: " + currentSession.getCurrentUser().getUserID());
             fileWriter.write('\n');
             fileWriter.close();
         } catch (IOException e) {
