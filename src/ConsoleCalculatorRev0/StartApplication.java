@@ -39,9 +39,9 @@ CalcUserService calcUserService = new CalcUserService();
     public void start(){
 
             if (consoleSessions.getCurrentUser() == null){
-                showAuthorisationMenu();
+                makeAuthorisationAction();
             }
-            else showUserMenu();
+            else makeUserAction();
         }
     
 
@@ -58,6 +58,8 @@ CalcUserService calcUserService = new CalcUserService();
 
 
     private void makeAuthorisationAction(){
+//        showAuthorisationMenu();
+
     boolean excistsUser1 = true;
 
         while (excistsUser1){
@@ -91,6 +93,8 @@ CalcUserService calcUserService = new CalcUserService();
 
 
     private void makeUserAction(){
+//        showUserMenu();
+
         boolean excistsUser1 = true;
 
         while (excistsUser1){
