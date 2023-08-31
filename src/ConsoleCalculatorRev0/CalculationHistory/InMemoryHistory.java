@@ -13,14 +13,12 @@ public class InMemoryHistory implements History {
    //Create ArrayList to keep history in memory
    protected ArrayList <String> memoryHistory = new ArrayList<>();
 
+
     //Create object of class ConsoleWriter
     ConsoleWriter consoleWriter = new ConsoleWriter();
 
-    ConsoleSessions currentSession = new ConsoleSessions();
+//    ConsoleSessions currentSession = new ConsoleSessions();
 
-    public ArrayList<String> getMemoryHistory() {
-        return memoryHistory;
-    }
 
     //Method for writing history of calculations in memory
     @Override
@@ -34,8 +32,15 @@ public class InMemoryHistory implements History {
     @Override
     public void writeHistoryWithUser(CalcOperation calcOperation, CalculatorUser calculatorUser){
         memoryHistory.add("num1: " + calcOperation.getNum1() + " num2: " + calcOperation.getNum2() + " action: " + calcOperation.getAction() +
-                " =result: " + calcOperation.getResult() + ", Date and time of operation: " + calcOperation.getFormatDateTime() +", User ID: " + currentSession.getCurrentUser().getUserID());
+                " =result: " + calcOperation.getResult() + ", Date and time of operation: " + calcOperation.getFormatDateTime() +", User ID: " + calculatorUser.getUserID());
     }
+
+
+    @Override
+    public ArrayList<String> getOperationHistory(){
+        return memoryHistory;
+    }
+
 
 
 

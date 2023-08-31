@@ -1,6 +1,7 @@
 package ConsoleCalculatorRev0;
 
-import ConsoleCalculatorRev0.CalculationHistory.PrintMemoryHistoryToConsole;
+import ConsoleCalculatorRev0.CalculationHistory.History;
+
 import ConsoleCalculatorRev0.IO.ConsoleReader;
 import ConsoleCalculatorRev0.IO.ConsoleWriter;
 import ConsoleCalculatorRev0.Objects.CalcOperation;
@@ -11,6 +12,7 @@ import ConsoleCalculatorRev0.Services.RegisterNewUserService;
 import ConsoleCalculatorRev0.UserSession.ConsoleSessions;
 
 import java.util.List;
+import java.util.Optional;
 
 public class StartApplication {
 
@@ -22,37 +24,36 @@ ConsoleSessions consoleSessions = new ConsoleSessions();
 CalcUserService calcUserService = new CalcUserService();
 
     CalculatorUser calculatorUser;
-    PrintMemoryHistoryToConsole printMemoryHistoryToConsole;
 
-    private boolean excistsUser= true;
+    private boolean excistsUser= false;
 
 
-//public void start(){
-//while (excistsUser){
-//    if (consoleSessions.getCurrentUser() == null){
-//        showAuthorisationMenu();
-//    }
-//   else showUserMenu();
-//}
-//}
+    public void start() {
 
-    public void start(){
+        if (consoleSessions.getCurrentUser() == null) {
+            makeAuthorisationAction();
 
-            if (consoleSessions.getCurrentUser() == null){
-                makeAuthorisationAction();
+            if (consoleSessions.getCurrentUser() == null) {
+                consoleWriter.printMessage("Authorisation was failed. Exit.");
+                return;
+
             }
-            else makeUserAction();
+
         }
+
+        calculate();
+
+    }
     
 
 
     private void showAuthorisationMenu() {
-        consoleWriter.printMessage("Enter:\n 0 - exit;\n 1 - sign up;\n 2 - login");
+        consoleWriter.printMessage("\nEnter:\n 0 - exit;\n 1 - sign up;\n 2 - login\n");
     }
 
 
     private void showUserMenu() {
-        consoleWriter.printMessage("Enter:\n 0 - exit;\n 1 - sign up;\n 2 - login;\n 3 - use calculator");
+        consoleWriter.printMessage("\nEnter:\n 0 - exit;\n 1 - continue;\n 2 - show history of calculation\n");
     }
 
 
@@ -60,9 +61,9 @@ CalcUserService calcUserService = new CalcUserService();
     private void makeAuthorisationAction(){
 //        showAuthorisationMenu();
 
-    boolean excistsUser1 = true;
+    boolean toProcess = true;
 
-        while (excistsUser1){
+        while (toProcess){
 
     showAuthorisationMenu();
     double choice = consoleReader.readNumbers();
@@ -70,104 +71,79 @@ CalcUserService calcUserService = new CalcUserService();
   switch ((int) choice){
        case (0) -> {
            excistsUser = false;
-           excistsUser1 = false;
+           toProcess = false;
 //           consoleSessions.logOutUser();
-           break;
        }
        case (1) -> {
-          calcUserService.signUpNewUser(calculatorUser.getUserName(), calculatorUser.getUserEmail(), calculatorUser.getUserPassword());
-           break;
+          calculatorUser = calcUserService.signUpNewUser();
+
+          if(calculatorUser != null){
+              excistsUser = true;
+              toProcess = false;
+          }
        }
        case (2) -> {
-           calcUserService.logInCalculatorUser(calculatorUser.getUserName(), calculatorUser.getUserPassword());
-           break;
+          Optional <CalculatorUser> oldCalculatorUser = calcUserService.logInCalculatorUser();
+
+          if(!oldCalculatorUser.isEmpty()){
+              calculatorUser = oldCalculatorUser.get();
+              excistsUser = true;
+              toProcess = false;
+          }
        }
       default -> throw new IllegalStateException("Unexpected value: " + (int) choice);
 
    }
 
     }
-
-    }
-
-
-
-    private void makeUserAction(){
-//        showUserMenu();
-
-        boolean excistsUser1 = true;
-
-        while (excistsUser1){
-
-            showUserMenu();
-            double choice = consoleReader.readNumbers();
-
-            switch ((int) choice){
-                case (0) -> {
-//                    excistsUser = false;
-//                    excistsUser1 = false;
-           consoleSessions.logOutUser();
-                    break;
-                }
-                case (1) -> {
-                    calcUserService.signUpNewUser(calculatorUser.getUserName(), calculatorUser.getUserEmail(), calculatorUser.getUserPassword());
-                    break;
-                }
-                case (2) -> {
-                    calcUserService.logInCalculatorUser(calculatorUser.getUserName(), calculatorUser.getUserPassword());
-                    break;
-                }
-                case (3) -> {
-                    calculate();
-                }
-
-                default -> throw new IllegalStateException("Unexpected value: " + (int) choice);
-            }
-
+        if(excistsUser == true){
+            consoleSessions.setCalculatorUser(calculatorUser);
+            consoleSessions.writeUserInSessionHistory(calculatorUser);
         }
 
     }
 
 
 
-
     private void calculate(){
 
         while (true){
-            consoleWriter.printMessage("Enter the number num1: ");
-            double num1 = consoleReader.readNumbers();
 
-            consoleWriter.printMessage("Enter the number num2: ");
-            double num2 = consoleReader.readNumbers();
-
-            consoleWriter.printMessage("Enter the operation with this numbers: ");
-            String action = consoleReader.readAction();
-
-            double result = calculator.calculateResult(new CalcOperation(num1, num2, action));
-            consoleWriter.printMessage("Result of calculation: " + result);
-
-            consoleWriter.printMessage("Date and time of operation: " + calcOperation.getFormatDateTime());
-
-            consoleWriter.printMessage("User ID is " + calculatorUser.getUserID());
-
-
-            consoleWriter.printMessage("\n\nEnter 0 - if you want exit. " +
-                    "\nEnter 1 - continue. " +
-                    "\nEnter 2 - show history of calculation.");
+            showUserMenu();
             double number = consoleReader.readNumbers();
 
             if(number == 0){
-                consoleWriter.printMessage("Goodbye...");
+                consoleWriter.printMessage("\nGoodbye...\n");
+                consoleSessions.logOutUser(calculatorUser);
                 break;
             }
             if(number == 1){
+                consoleWriter.printMessage("Enter the number num1: ");
+                double num1 = consoleReader.readNumbers();
+
+                consoleWriter.printMessage("Enter the number num2: ");
+                double num2 = consoleReader.readNumbers();
+
+                consoleWriter.printMessage("Enter the operation with this numbers: ");
+                String action = consoleReader.readAction();
+
+                double result = calculator.calculateResult(new CalcOperation(num1, num2, action), calculatorUser);
+                consoleWriter.printMessage("Result of calculation: " + result);
+
+                consoleWriter.printMessage("Date and time of operation: " + calcOperation.getFormatDateTime());
+
+                consoleWriter.printMessage("User ID is " + calculatorUser.getUserID());
+
+                consoleSessions.writeOperationsInSessionHistory(calcOperation, calculatorUser);
                 continue;
             }
             if(number == 2){
-//                PrintMemoryHistoryToConsole.printArrayList();
-                consoleWriter.printMessage("Don't know");
+                calcUserService.printConsoleHistoryByUser(calculator.getInMemoryHistory());
 
                 }
+            else
+            {consoleWriter.printMessage("You entered incorrect number.");
+            }
 
             }
 

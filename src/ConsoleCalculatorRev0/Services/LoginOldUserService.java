@@ -15,7 +15,7 @@ import java.util.Optional;
 
 public class LoginOldUserService {
     SaveNewUserInFile saveNewUserInFile = new SaveNewUserInFile();
-    CalculatorUser calculatorUser = new CalculatorUser();
+//    CalculatorUser calculatorUser = new CalculatorUser();
     private final ConsoleWriter consoleWriter = new ConsoleWriter();
     private final ConsoleReader consoleReader = new ConsoleReader();
 
@@ -23,32 +23,25 @@ public class LoginOldUserService {
 
 //Method for finding old user by userName and userPassword
 
-    public Optional<CalculatorUser> getOldUserFromList(String userName, String userPassword) {
+    public Optional<CalculatorUser> getOldUserFromList() {
 
-        List<String> list = Collections.singletonList(saveNewUserInFile.addUsersInfoToArrayList().stream().toString());
+        List<CalculatorUser> list = saveNewUserInFile.addUsersInfoToArrayList();
 
 
-        while (true) {
+
             consoleWriter.printMessage("\nEnter your username: ");
-            userName = consoleReader.readAction();
+            String userName = consoleReader.readAction();
 
             consoleWriter.printMessage("\nEnter your password: ");
-            userPassword = consoleReader.readAction();
+            String userPassword = consoleReader.readAction();
 
 
-            for (String s : list) {
-                String[] fields = s.split(" ");
+            for (CalculatorUser calculatorUser : list) {
 
-                calculatorUser.setUserID(Integer.valueOf(fields[0]));
-                calculatorUser.setUserName(fields[1]);
-                calculatorUser.setUserEmail(fields[2]);
-                calculatorUser.setUserPassword(fields[3]);
-                registrationDate.setFormatDateTime(fields[4]);
+                if ((userName.equalsIgnoreCase(calculatorUser.getUserName())) && (userPassword.equals(calculatorUser.getUserPassword()))) {
 
-                if ((userName.equalsIgnoreCase(fields[1])) && (userPassword.equals(fields[3]))) {
-
-                    consoleWriter.printMessage("Hi, " + calculatorUser.getUserName() + " with ID = "
-                            + calculatorUser.getUserID() + "!" + "Registration is successful!\n");
+                    consoleWriter.printMessage("Hi, " +calculatorUser.getUserName() + " with ID = "
+                            + calculatorUser.getUserID() + "! " + "Registration is successful!\n");
 
                     return Optional.of(calculatorUser);
                 }
@@ -58,7 +51,7 @@ public class LoginOldUserService {
             consoleWriter.printMessage("\nYou username or password are wrong. Please, try again.\n");
 
             return Optional.empty();
-        }
+
 
     }
 }

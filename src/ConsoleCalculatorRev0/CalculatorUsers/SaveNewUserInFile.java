@@ -66,13 +66,18 @@ public class SaveNewUserInFile implements SaveNewUser {
             list.stream().forEach(s -> {
                 String[] fields = s.split(" ");
 
-                calculatorUser.setUserID(Integer.valueOf(fields[0]));
-                calculatorUser.setUserName(fields[1]);
-                calculatorUser.setUserEmail(fields[2]);
-                calculatorUser.setUserPassword(fields[3]);
-                registrationDate.setFormatDateTime(fields[4]);
-                usersInfoFromFileToList.add(calculatorUser);
-            });
+                if(fields.length == 6) {
+                    calculatorUser.setUserID(Integer.valueOf(fields[0]));
+                    calculatorUser.setUserName(fields[1]);
+                    calculatorUser.setUserEmail(fields[2]);
+                    calculatorUser.setUserPassword(fields[3]);
+                    registrationDate.setFormatDateTime(fields[4]);
+                    usersInfoFromFileToList.add(calculatorUser);
+                }
+                });
+
+
+
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -80,78 +85,6 @@ public class SaveNewUserInFile implements SaveNewUser {
 
         return usersInfoFromFileToList;
     }
-
-
-
-
-//    //Method for finding old user by userName and userPassword
-//   @Override
-//    public Optional<CalculatorUser> getOldUserFromList(String userName, String userPassword){
-//
-//        List<String> list = Collections.singletonList(addUsersInfoToArrayList().stream().toString());
-//
-//
-//       while (true) {
-//           consoleWriter.printMessage("\nEnter your username: ");
-//           userName = consoleReader.readAction();
-//
-//           consoleWriter.printMessage("\nEnter your password: ");
-//           userPassword = consoleReader.readAction();
-//
-//
-//           for (String s : list) {
-//               String[] fields = s.split(" ");
-//
-//               calculatorUser.setUserID(Integer.valueOf(fields[0]));
-//               calculatorUser.setUserName(fields[1]);
-//               calculatorUser.setUserEmail(fields[2]);
-//               calculatorUser.setUserPassword(fields[3]);
-//               calcUserService.setFormatDateTime(fields[4]);
-//
-//               if ((userName.equalsIgnoreCase(fields[1])) && (userPassword.equals(fields[3]))) {
-//
-//                   consoleWriter.printMessage("Hi, " + calculatorUser.getUserName() + " with ID = "
-//                           + calculatorUser.getUserID() + "!" + "Registration is successful!\n");
-//
-//                   return Optional.of(calculatorUser);
-//               }
-//
-//           }
-//
-//           consoleWriter.printMessage("\nYou username or password are wrong. Please, try again.\n");
-//
-//           return Optional.empty();
-//       }
-//
-//   }
-
-
-
-//    @Override
-//    public Optional<CalculatorUser> getOldUserFromList(String userName, String userPassword){
-//
-//        List<String> list = Collections.singletonList(addUsersInfoToArrayList().stream().toString());
-//
-//        list.forEach(s -> {
-//            String[] fields = s.split(" ");
-//
-////           CalculatorUser calculatorUser = new CalculatorUser();
-//            calculatorUser.setUserID(Integer.valueOf(fields[0]));
-//            calculatorUser.setUserName(fields[1]);
-//            calculatorUser.setUserEmail(fields[2]);
-//            calculatorUser.setUserPassword(fields[3]);
-//            calcUserService.setFormatDateTime(fields[4]);
-//
-//            if((userName.equalsIgnoreCase(fields[1])) && (userPassword.equals(fields[3]))){
-//                return Optional.of(calculatorUser);
-//            }
-//
-//        });
-//
-//        return Optional.empty();
-//
-//    }
-
 
 
 
@@ -163,16 +96,17 @@ public class SaveNewUserInFile implements SaveNewUser {
         for (String s : list) {
             String[] fields = s.split(" ");
 
-            calculatorUser.setUserID(Integer.valueOf(fields[0]));
-            calculatorUser.setUserName(fields[1]);
-            calculatorUser.setUserEmail(fields[2]);
-            calculatorUser.setUserPassword(fields[3]);
-            registrationDate.setFormatDateTime(fields[4]);
+if(fields.length == 6) {
+    calculatorUser.setUserID(Integer.valueOf(fields[0]));
+    calculatorUser.setUserName(fields[1]);
+    calculatorUser.setUserEmail(fields[2]);
+    calculatorUser.setUserPassword(fields[3]);
+    registrationDate.setFormatDateTime(fields[4]);
 
-            Integer IDtoInt = Integer.valueOf(fields[0]);
-            if (userID.equals(IDtoInt)) {
-                return calculatorUser;
-            }
+    if (userID.equals(calculatorUser.getUserID())) {
+        return calculatorUser;
+    }
+}
 
         }
 

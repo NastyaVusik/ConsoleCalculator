@@ -1,13 +1,17 @@
 package ConsoleCalculatorRev0.Services;
 
+import ConsoleCalculatorRev0.CalculationHistory.History;
+import ConsoleCalculatorRev0.CalculationHistory.InMemoryHistory;
 import ConsoleCalculatorRev0.CalculatorUsers.NewUserInfoChecker;
 import ConsoleCalculatorRev0.CalculatorUsers.SaveNewUserInFile;
 import ConsoleCalculatorRev0.IO.ConsoleReader;
 import ConsoleCalculatorRev0.IO.ConsoleWriter;
+import ConsoleCalculatorRev0.Objects.CalcOperation;
 import ConsoleCalculatorRev0.Objects.CalculatorUser;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Optional;
 
 public class CalcUserService {
@@ -19,45 +23,37 @@ public class CalcUserService {
     RegisterNewUserService registerNewUserService = new RegisterNewUserService();
 
 
-//    //Date and time
-//    LocalDateTime registeredAt = LocalDateTime.now();
-//    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-//    String formatDateTime = registeredAt.format(formatter);
-
-
-
-    public CalculatorUser signUpNewUser(String userName, String userEmail, String userPassword) {
-        return registerNewUserService.registerNewUser(userName, userEmail, userPassword);
+    public CalculatorUser signUpNewUser() {
+        return registerNewUserService.registerNewUser();
     }
 
 
     //Method for getting old user by userName and userPassword
-    public Optional<CalculatorUser> logInCalculatorUser(String userName, String userPassword){          //LogIn
-       return loginOldUserService.getOldUserFromList(userName, userPassword);
+    public Optional<CalculatorUser> logInCalculatorUser() {          //LogIn
+        return loginOldUserService.getOldUserFromList();
     }
 
 
     //Method for getting old user by ID
-    public CalculatorUser getCalculatorUserByID(Integer userID){
+    public CalculatorUser getCalculatorUserByID(Integer userID) {
         return saveNewUserInFile.getOldUserByID(userID);
     }
 
 
+    public void printConsoleHistoryByUser(History history) {
+        ArrayList<String> listHistoryByUser = history.getOperationHistory();
 
-//    //Method to get Date and time
-//    public String getFormatDateTime() {
-//
-//        LocalDateTime now = LocalDateTime.now();
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-//        formatDateTime = now.format(formatter);
-//
-//        return formatDateTime;
-//    }
-//
-//
-//    public void setFormatDateTime(String formatDateTime) {
-//        this.formatDateTime = formatDateTime;
-//    }
 
+        if (listHistoryByUser.isEmpty()) {
+            consoleWriter.printMessage("History of this user is empty");
+        } else {
+            consoleWriter.printMessage("\n\nHistory of calculation in ArrayList:\n ");
+
+            for (String list : listHistoryByUser) {
+                consoleWriter.printMessage(list);
+            }
+        }
+    }
 
 }
+

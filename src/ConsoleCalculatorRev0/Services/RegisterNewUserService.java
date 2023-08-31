@@ -18,13 +18,13 @@ public class RegisterNewUserService {
 
 
 
-    public CalculatorUser registerNewUser(String userName, String userEmail, String userPassword) {
+    public CalculatorUser registerNewUser() {
 
         CalculatorUser calculatorUser = new CalculatorUser();
 
         while (true) {
             consoleWriter.printMessage("\nEnter your username. It might be one word. Quantity of symbols is from 1 to 18: ");
-            userName = consoleReader.readAction();
+            String userName = consoleReader.readAction();
 
             if ((newUserInfoChecker.checkUserName(userName))  && !(newUserInfoChecker.isUserNameOccupied(userName))) {
                 calculatorUser.setUserName(userName);
@@ -37,7 +37,7 @@ public class RegisterNewUserService {
 
         while (true) {
             consoleWriter.printMessage("\nEnter your email: ");
-            userEmail = consoleReader.readAction();
+            String userEmail = consoleReader.readAction();
 
             if (newUserInfoChecker.checkUserEmail(userEmail) && !(newUserInfoChecker.isUserEmailOccupied(userEmail))) {
                 calculatorUser.setUserEmail(userEmail);
@@ -51,7 +51,7 @@ public class RegisterNewUserService {
         while (true) {
             consoleWriter.printMessage("\nEnter your password. Length of password is more 6 symbols. There is required at least one digit," +
                     " one upper case letter, one ony other special symbol: ");
-            userPassword = consoleReader.readAction();
+            String userPassword = consoleReader.readAction();
 
             if (newUserInfoChecker.checkUserPassword(userPassword)) {
                 calculatorUser.setUserPassword(userPassword);
@@ -64,7 +64,7 @@ public class RegisterNewUserService {
 
         consoleWriter.printMessage("\nHi, " + calculatorUser.getUserName() + "!" + "Your registration was successful!\n");
 
-        saveNewUserInFile.saveNewUser(calculatorUser);                                  //Is it good???????????????????????????
+        saveNewUserInFile.saveNewUser(calculatorUser);
 
         return calculatorUser;
     }

@@ -97,13 +97,6 @@ public class CalcOperation {
         this.result = result;
     }
 
-    public Integer getUserID() {
-        return userID;
-    }
-
-    public void setUserID(Integer userID) {
-        this.userID = userID;
-    }
 
     public void setFormatDateTime(String formatDateTime) {
         this.formatDateTime = formatDateTime;
