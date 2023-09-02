@@ -8,7 +8,6 @@ import ConsoleCalculatorRev0.Objects.CalcOperation;
 import ConsoleCalculatorRev0.Objects.CalculatorUser;
 import ConsoleCalculatorRev0.Services.CalcUserService;
 import ConsoleCalculatorRev0.Services.OperationService;
-import ConsoleCalculatorRev0.Services.RegisterNewUserService;
 import ConsoleCalculatorRev0.UserSession.ConsoleSessions;
 
 import java.util.List;
@@ -26,6 +25,8 @@ CalcUserService calcUserService = new CalcUserService();
     CalculatorUser calculatorUser;
 
     private boolean excistsUser= false;
+
+
 
 
     public void start() {

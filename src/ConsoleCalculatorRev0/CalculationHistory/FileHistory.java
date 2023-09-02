@@ -2,6 +2,7 @@ package ConsoleCalculatorRev0.CalculationHistory;
 
 import ConsoleCalculatorRev0.Objects.CalcOperation;
 import ConsoleCalculatorRev0.Objects.CalculatorUser;
+import ConsoleCalculatorRev0.SaveFileHistoryInThread;
 import ConsoleCalculatorRev0.UserSession.ConsoleSessions;
 
 import java.io.*;
@@ -46,26 +47,16 @@ public class FileHistory implements History {
 
     @Override
     public void writeHistoryWithUser(CalcOperation calcOperation,  CalculatorUser calculatorUser) {
-//        calculatorUser = currentSession.getCurrentUser(calculatorUser);
+        SaveFileHistoryInThread saveFileHistoryInThread;
 
-        File file = new File(filePath1);
-        FileWriter fileWriter;
-        try {
-            fileWriter = new FileWriter(file, true);
-            fileWriter.write("num1: " + calcOperation.getNum1() + " num2: " + calcOperation.getNum2() + " action: " + calcOperation.getAction() +
-                    " result: " + calcOperation.getResult() + ", Date and time of operation: " + calcOperation.getFormatDateTime() + ", User ID: " + calculatorUser.getUserID());
-            fileWriter.write('\n');
-            fileWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException();
-        }
+Thread thread = new Thread(new SaveFileHistoryInThread(calcOperation, calculatorUser));
+thread.start();
     }
 
 
     @Override
    public ArrayList<String> getOperationHistory(){
-        ArrayList <String> listHistory = new ArrayList<>();
+        ArrayList <String> listHistory;
 
         try {
             listHistory = (ArrayList<String>) Files.readAllLines(Path.of("src/ConsoleCalculatorRev0/CalculationHistory/SaveHistoryFiles/ historyWithUser.txt"));
