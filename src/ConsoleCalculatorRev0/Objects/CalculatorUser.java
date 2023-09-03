@@ -11,12 +11,6 @@ import java.time.format.DateTimeFormatter;
 
 public class CalculatorUser {
 
-//    //Date and time
-//    LocalDateTime now = LocalDateTime.now();
-//    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-//    String formatDateTime = now.format(formatter);
-
-
     //Object of new visitor, which will register the first time
     private String userName;
     private String userEmail;
@@ -49,7 +43,11 @@ public class CalculatorUser {
         this.userID = userID;
     }
 
-//    public CalculatorUser(String userName, String userEmail, String userPassword, Integer userID, String formatDateTime) {
+    public CalculatorUser(Integer userID, String userName, String userEmail, String userPassword, String formatDateTime) {
+    }
+
+
+//    public CalculatorUser(Integer userID, String userName, String userEmail, String userPassword, String formatDateTime) {
 //        this.userName = userName;
 //        this.userEmail = userEmail;
 //        this.userPassword = userPassword;

@@ -24,7 +24,6 @@ public class SaveFileHistoryInThread implements Runnable {
 
     @Override
         public void run() {
-//            fileHistory.writeHistoryWithUser(CalcOperation calcOperation, CalculatorUser calculatorUser);
 
             File file = new File(filePath1);
             FileWriter fileWriter;
