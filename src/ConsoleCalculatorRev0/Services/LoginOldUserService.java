@@ -1,31 +1,28 @@
 package ConsoleCalculatorRev0.Services;
 
-import ConsoleCalculatorRev0.CalculatorUsers.SaveNewUserInFile;
+import ConsoleCalculatorRev0.CalculatorUsers.SaveNewUserInJDBC;
 import ConsoleCalculatorRev0.IO.ConsoleReader;
 import ConsoleCalculatorRev0.IO.ConsoleWriter;
 import ConsoleCalculatorRev0.Objects.CalculatorUser;
-import ConsoleCalculatorRev0.Services.CalcUserService;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 public class LoginOldUserService {
-    SaveNewUserInFile saveNewUserInFile = new SaveNewUserInFile();
-//    CalculatorUser calculatorUser = new CalculatorUser();
+//    SaveNewUserInFile saveNewUserInFile = new SaveNewUserInFile();
+
+    SaveNewUserInJDBC jdbcUserStorage = new SaveNewUserInJDBC();           //!!!!!!!!!!!!!!!!!!!!! Changed from File storage
+
     private final ConsoleWriter consoleWriter = new ConsoleWriter();
     private final ConsoleReader consoleReader = new ConsoleReader();
 
-    RegistrationDate registrationDate = new RegistrationDate();
 
 //Method for finding old user by userName and userPassword
 
     public Optional<CalculatorUser> getOldUserFromList() {
 
-        List<CalculatorUser> list = saveNewUserInFile.addUsersInfoToArrayList();
+//        List<CalculatorUser> list = saveNewUserInFile.addUsersInfoToArrayList();
+        List<CalculatorUser> list = jdbcUserStorage.addUsersInfoToArrayList();                //!!!!!!!!!!!!!!!!!!!!! Changed from File storage
 
 
 
@@ -41,7 +38,7 @@ public class LoginOldUserService {
                 if ((userName.equalsIgnoreCase(calculatorUser.getUserName())) && (userPassword.equals(calculatorUser.getUserPassword()))) {
 
                     consoleWriter.printMessage("Hi, " +calculatorUser.getUserName() + " with ID = "
-                            + calculatorUser.getUserID() + "! " + "Registration is successful!\n");
+                            + calculatorUser.getUserID() + "! " + "Authorisation is successful!\n");
 
                     return Optional.of(calculatorUser);
                 }

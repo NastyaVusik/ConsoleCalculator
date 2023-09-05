@@ -1,6 +1,5 @@
 package ConsoleCalculatorRev0;
 
-import ConsoleCalculatorRev0.CalculationHistory.FileHistory;
 import ConsoleCalculatorRev0.Objects.CalcOperation;
 import ConsoleCalculatorRev0.Objects.CalculatorUser;
 

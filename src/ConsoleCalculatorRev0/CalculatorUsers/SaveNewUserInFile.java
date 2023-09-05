@@ -16,7 +16,7 @@ import java.util.Optional;
 
 public class SaveNewUserInFile implements SaveNewUser {
     private final ConsoleWriter consoleWriter = new ConsoleWriter();
-    List<CalculatorUser> usersInfoFromFileToList = new ArrayList<>();
+//    List<CalculatorUser> usersInfoFromFileToList = new ArrayList<>();
     CalculatorUser calculatorUser = new CalculatorUser();
 
     RegistrationDate registrationDate = new RegistrationDate();

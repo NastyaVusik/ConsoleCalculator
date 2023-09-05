@@ -1,4 +1,4 @@
-package ConsoleCalculatorRev0.JDBC;
+package ConsoleCalculatorRev0.CalculationHistory.JDBCStorage;
 
 import ConsoleCalculatorRev0.CalculationHistory.History;
 import ConsoleCalculatorRev0.IO.ConsoleWriter;
@@ -9,16 +9,20 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JDBCStorage implements History {
+public class JDBCHistory implements History {
 
     ConsoleWriter consoleWriter = new ConsoleWriter();
+
+    private final String URL1 = "jdbc:postgresql://localhost:5432/postgres";
+    private final String USER1 = "postgres";
+    private final String PASSWORD1 = "PGPangalin013$";
 
 
     @Override
     public void writeHistory(CalcOperation calcOperation) {
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "root");
+            Connection connection = DriverManager.getConnection(URL1, USER1, PASSWORD1);
 
             PreparedStatement prepareStatement = connection.prepareStatement("insert into \"Calculation_history\" values (?, ?, ?, ?, ?)");
             prepareStatement.setDouble(1, calcOperation.getNum1());
@@ -43,9 +47,9 @@ public class JDBCStorage implements History {
     public void writeHistoryWithUser(CalcOperation calcOperation, CalculatorUser calculatorUser) {
 
         try {
-        Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "root");
+        Connection connection = DriverManager.getConnection(URL1, USER1, PASSWORD1);
 
-            PreparedStatement prepareStatement = connection.prepareStatement("insert into \"Calculation_history\" values (?, ?, ?, ?, ?, ?)");
+            PreparedStatement prepareStatement = connection.prepareStatement("insert into \"Calculation_historyWithUser\" values (?, ?, ?, ?, ?, ?)");
             prepareStatement.setDouble(1, calcOperation.getNum1());
 
             prepareStatement.setDouble(2, calcOperation.getNum2());
@@ -68,11 +72,11 @@ prepareStatement.execute();
     public ArrayList<String> getOperationHistory(){
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "root");
+            Connection connection = DriverManager.getConnection(URL1, USER1, PASSWORD1);
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from \"Calculator_users\"");
+            ResultSet resultSet = statement.executeQuery("select * from \"Calculation_history\"");
 
-            List <String> operationList = new ArrayList<>();
+            ArrayList <String> operationList = new ArrayList<>();
 
             while (resultSet.next()) {
                 double num1 = resultSet.getDouble(1);
@@ -85,13 +89,16 @@ prepareStatement.execute();
                 CalcOperation calcOperation = new CalcOperation(num1, num2, action, result, date, userID);
 
                 operationList.add(String.valueOf(calcOperation));
+
+//                return operationList;
             }
+            return operationList;
+
         }catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
-        consoleWriter.printMessage("User with this ID doesn't exist");
-        return null;
+//        return null;
     }
 }
 

@@ -139,7 +139,8 @@ CalcUserService calcUserService = new CalcUserService();
                 continue;
             }
             if(number == 2){
-                calcUserService.printConsoleHistoryByUser(calculator.getInMemoryHistory());
+//                calcUserService.printConsoleHistoryByUser(calculator.getInMemoryHistory());
+                calcUserService.printConsoleHistoryByUser(calculator.getJdbcHistory());               //!!!!!!!!!!!!!!!!!!!!! Changed from File storage
 
                 }
             else

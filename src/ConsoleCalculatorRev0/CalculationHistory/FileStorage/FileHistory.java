@@ -1,5 +1,6 @@
-package ConsoleCalculatorRev0.CalculationHistory;
+package ConsoleCalculatorRev0.CalculationHistory.FileStorage;
 
+import ConsoleCalculatorRev0.CalculationHistory.History;
 import ConsoleCalculatorRev0.Objects.CalcOperation;
 import ConsoleCalculatorRev0.Objects.CalculatorUser;
 import ConsoleCalculatorRev0.SaveFileHistoryInThread;
@@ -59,7 +60,7 @@ thread.start();
         ArrayList <String> listHistory;
 
         try {
-            listHistory = (ArrayList<String>) Files.readAllLines(Path.of("src/ConsoleCalculatorRev0/CalculationHistory/SaveHistoryFiles/ historyWithUser.txt"));
+            listHistory = (ArrayList<String>) Files.readAllLines(Path.of(filePath1));
 
             } catch (IOException ex) {
             throw new RuntimeException(ex);

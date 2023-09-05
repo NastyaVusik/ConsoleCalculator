@@ -1,12 +1,10 @@
 package ConsoleCalculatorRev0.UserSession;
 
-import ConsoleCalculatorRev0.CalculationHistory.FileHistory;
+import ConsoleCalculatorRev0.CalculationHistory.FileStorage.FileHistory;
 import ConsoleCalculatorRev0.CalculationHistory.History;
-import ConsoleCalculatorRev0.CalculatorUsers.*;
 import ConsoleCalculatorRev0.Objects.CalcOperation;
 import ConsoleCalculatorRev0.Objects.CalculatorUser;
 import ConsoleCalculatorRev0.Services.CalcUserService;
-import ConsoleCalculatorRev0.Services.LoginOldUserService;
 import ConsoleCalculatorRev0.Services.RegistrationDate;
 
 import java.io.*;

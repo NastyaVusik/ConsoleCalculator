@@ -1,20 +1,18 @@
 package ConsoleCalculatorRev0.Services;
 
+import ConsoleCalculatorRev0.CalculatorUsers.SaveNewUserInJDBC;
 import ConsoleCalculatorRev0.CalculatorUsers.NewUserInfoChecker;
-import ConsoleCalculatorRev0.CalculatorUsers.SaveNewUserInFile;
 import ConsoleCalculatorRev0.IO.ConsoleReader;
 import ConsoleCalculatorRev0.IO.ConsoleWriter;
 import ConsoleCalculatorRev0.Objects.CalculatorUser;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class RegisterNewUserService {
 
     private final ConsoleWriter consoleWriter = new ConsoleWriter();
     private final ConsoleReader consoleReader = new ConsoleReader();
     NewUserInfoChecker newUserInfoChecker = new NewUserInfoChecker();
-    SaveNewUserInFile saveNewUserInFile = new SaveNewUserInFile();
+//    SaveNewUserInFile saveNewUserInFile = new SaveNewUserInFile();
+    SaveNewUserInJDBC jdbcUserHistory = new SaveNewUserInJDBC();           //!!!!!!!!!!!!!!!!!!!!! Changed from File storage
 
 
 
@@ -64,7 +62,9 @@ public class RegisterNewUserService {
 
         consoleWriter.printMessage("\nHi, " + calculatorUser.getUserName() + "!" + "Your registration was successful!\n");
 
-        saveNewUserInFile.saveNewUser(calculatorUser);
+//        saveNewUserInFile.saveNewUser(calculatorUser);
+
+        jdbcUserHistory.saveNewUser(calculatorUser);           //!!!!!!!!!!!!!!!!!!!!! Changed from File storage
 
         return calculatorUser;
     }

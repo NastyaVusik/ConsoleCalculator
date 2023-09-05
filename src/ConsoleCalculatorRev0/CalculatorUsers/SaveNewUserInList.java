@@ -10,8 +10,6 @@ import java.util.Optional;
 
 public class SaveNewUserInList implements SaveNewUser{
 
-    CalculatorUser calculatorUser = new CalculatorUser();
-
     //Create arrayList for keeping all registered users
     private List<CalculatorUser> usersInfoArrayList = new ArrayList<>();
 

@@ -1,0 +1,10 @@
+num1: 0.0 num2: 0.0 action: null result: 0.0, Date and time of operation: 04-09-2023 13:13:38, User ID: 0
+num1: 0.0 num2: 0.0 action: null result: 0.0, Date and time of operation: 04-09-2023 13:13:53, User ID: 0
+num1: 0.0 num2: 0.0 action: null result: 0.0, Date and time of operation: 04-09-2023 13:18:04, User ID: 0
+num1: 0.0 num2: 0.0 action: null result: 0.0, Date and time of operation: 04-09-2023 13:18:19, User ID: 0
+num1: 0.0 num2: 0.0 action: null result: 0.0, Date and time of operation: 04-09-2023 13:23:26, User ID: 0
+num1: 0.0 num2: 0.0 action: null result: 0.0, Date and time of operation: 04-09-2023 13:23:40, User ID: 0
+num1: 0.0 num2: 0.0 action: null result: 0.0, Date and time of operation: 04-09-2023 13:27:33, User ID: 0
+num1: 0.0 num2: 0.0 action: null result: 0.0, Date and time of operation: 04-09-2023 13:27:39, User ID: 0
+num1: 0.0 num2: 0.0 action: null result: 0.0, Date and time of operation: 04-09-2023 23:21:58, User ID: 0
+num1: 0.0 num2: 0.0 action: null result: 0.0, Date and time of operation: 04-09-2023 23:22:04, User ID: 0

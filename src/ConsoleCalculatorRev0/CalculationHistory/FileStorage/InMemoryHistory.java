@@ -1,5 +1,6 @@
-package ConsoleCalculatorRev0.CalculationHistory;
+package ConsoleCalculatorRev0.CalculationHistory.FileStorage;
 
+import ConsoleCalculatorRev0.CalculationHistory.History;
 import ConsoleCalculatorRev0.Objects.CalcOperation;
 
 import ConsoleCalculatorRev0.Objects.CalculatorUser;
@@ -16,8 +17,6 @@ public class InMemoryHistory implements History {
 
     //Create object of class ConsoleWriter
     ConsoleWriter consoleWriter = new ConsoleWriter();
-
-//    ConsoleSessions currentSession = new ConsoleSessions();
 
 
     //Method for writing history of calculations in memory
