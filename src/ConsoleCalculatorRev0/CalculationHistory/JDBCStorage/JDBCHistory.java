@@ -15,7 +15,7 @@ public class JDBCHistory implements History {
 
     private final String URL1 = "jdbc:postgresql://localhost:5432/postgres";
     private final String USER1 = "postgres";
-    private final String PASSWORD1 = "PGPangalin013$";
+    private final String PASSWORD1 = "root";
 
 
     @Override
