@@ -2,6 +2,7 @@ package ConsoleCalculatorRev0;
 
 import ConsoleCalculatorRev0.CalculationHistory.History;
 
+import ConsoleCalculatorRev0.CalculatorUsers.SaveNewUser;
 import ConsoleCalculatorRev0.IO.ConsoleReader;
 import ConsoleCalculatorRev0.IO.ConsoleWriter;
 import ConsoleCalculatorRev0.Objects.CalcOperation;
@@ -20,7 +21,13 @@ public class StartApplication {
     OperationService calculator = new OperationService();
     CalcOperation calcOperation = new CalcOperation();
 ConsoleSessions consoleSessions = new ConsoleSessions();
-CalcUserService calcUserService = new CalcUserService();
+
+public StartApplication(SaveNewUser saveNewUser){
+    this.calcUserService = new CalcUserService(saveNewUser);
+
+}
+
+CalcUserService calcUserService;
 
     CalculatorUser calculatorUser;
 

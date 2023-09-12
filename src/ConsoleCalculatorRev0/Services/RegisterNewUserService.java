@@ -1,5 +1,6 @@
 package ConsoleCalculatorRev0.Services;
 
+import ConsoleCalculatorRev0.CalculatorUsers.SaveNewUser;
 import ConsoleCalculatorRev0.CalculatorUsers.SaveNewUserInJDBC;
 import ConsoleCalculatorRev0.CalculatorUsers.NewUserInfoChecker;
 import ConsoleCalculatorRev0.IO.ConsoleReader;
@@ -10,10 +11,14 @@ public class RegisterNewUserService {
 
     private final ConsoleWriter consoleWriter = new ConsoleWriter();
     private final ConsoleReader consoleReader = new ConsoleReader();
-    NewUserInfoChecker newUserInfoChecker = new NewUserInfoChecker();
+    NewUserInfoChecker newUserInfoChecker;
 //    SaveNewUserInFile saveNewUserInFile = new SaveNewUserInFile();
-    SaveNewUserInJDBC jdbcUserHistory = new SaveNewUserInJDBC();           //!!!!!!!!!!!!!!!!!!!!! Changed from File storage
+    SaveNewUser saveNewUser;           //!!!!!!!!!!!!!!!!!!!!! Changed from File storage
 
+    public RegisterNewUserService(SaveNewUser saveNewUser){
+        this.newUserInfoChecker = new NewUserInfoChecker(saveNewUser);
+        this.saveNewUser = saveNewUser;
+    }
 
 
     public CalculatorUser registerNewUser() {
@@ -64,7 +69,7 @@ public class RegisterNewUserService {
 
 //        saveNewUserInFile.saveNewUser(calculatorUser);
 
-        jdbcUserHistory.saveNewUser(calculatorUser);           //!!!!!!!!!!!!!!!!!!!!! Changed from File storage
+        saveNewUser.saveNewUser(calculatorUser);           //!!!!!!!!!!!!!!!!!!!!! Changed from File storage
 
         return calculatorUser;
     }

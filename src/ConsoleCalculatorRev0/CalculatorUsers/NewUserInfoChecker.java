@@ -1,12 +1,21 @@
 package ConsoleCalculatorRev0.CalculatorUsers;
 
+import ConsoleCalculatorRev0.Objects.CalculatorUser;
+
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class NewUserInfoChecker {
 
     //Create object of class SaveNewUserInList
-    SaveNewUserInList saveNewUserInList = new SaveNewUserInList();
+    SaveNewUser saveNewUser;
+
+
+    public NewUserInfoChecker(SaveNewUser saveNewUser){
+        this.saveNewUser = saveNewUser;
+
+    }
 
     private final String regexUserName = "^([^\\s]{1,16})$";
     private final String regexUserPassword = "^(?!.* )(?=.*\\d)(?=.*[A-Z]).{8,15}$";
@@ -39,9 +48,12 @@ public class NewUserInfoChecker {
     //Method for checking, if userName is already applied
     public boolean isUserNameOccupied(String userName) {
 
-        for (int i = 0; i < saveNewUserInList.getUsersInfoArrayList().size(); i++) {
+        List < CalculatorUser> calculatorUserList = saveNewUser.addUsersInfoToArrayList();
 
-            return (saveNewUserInList.getUsersInfoArrayList().get(i).getUserName()).equals(userName);
+        for (int i = 0; i < calculatorUserList.size(); i++) {
+            if (calculatorUserList.get(i).getUserName().equalsIgnoreCase(userName)){
+                return true;
+            }
         }
         return false;
         }
@@ -52,9 +64,9 @@ public class NewUserInfoChecker {
 
 //        String userEmail1 = registerNewUser.getUsersInfoArrayList().stream().filter(email -> {return email.equals(userEmail)}).findAny().orElse(null);
 
-            for(int i = 0; i < saveNewUserInList.getUsersInfoArrayList().size(); i++){
+            for(int i = 0; i < saveNewUser.addUsersInfoToArrayList().size(); i++){
 
-            return (saveNewUserInList.getUsersInfoArrayList().get(i).getUserEmail()).equals(userEmail);
+            return (saveNewUser.addUsersInfoToArrayList().get(i).getUserEmail()).equals(userEmail);
         }
 return false;
     }

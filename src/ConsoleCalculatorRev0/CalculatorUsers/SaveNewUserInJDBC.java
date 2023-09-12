@@ -13,7 +13,7 @@ public class SaveNewUserInJDBC implements SaveNewUser {
 
     private final String URL1 = "jdbc:postgresql://localhost:5432/postgres";
     private final String USER1 = "postgres";
-    private final String PASSWORD1 = "root";
+    private final String PASSWORD1 = "PGPangalin013$";
 
     ConsoleWriter consoleWriter = new ConsoleWriter();
     RegistrationDate registrationDate = new RegistrationDate();
@@ -23,23 +23,37 @@ public class SaveNewUserInJDBC implements SaveNewUser {
     Integer lastID;
 
     //Determine user ID
-public SaveNewUserInJDBC(){
-//    lastID = addUsersInfoToArrayList().size()+1;
+//public SaveNewUserInJDBC(){
+//
+//    Connection connection;
+//    try {
+//        connection = DriverManager.getConnection(URL1, USER1, PASSWORD1);
+//        Statement statement = connection.createStatement();
+//    ResultSet resultSet = statement.executeQuery("select count(id) from \"Calculator_users\" where id >= 0");
+//
+//    resultSet.next();
+//lastID = resultSet.getInt(1);
+//
+//    } catch (SQLException e) {
+//        throw new RuntimeException(e);
+//    }
+//
+//}
 
-    Connection connection;
-    try {
-        connection = DriverManager.getConnection(URL1, USER1, PASSWORD1);
-        Statement statement = connection.createStatement();
-    ResultSet resultSet = statement.executeQuery("select count(id) from \"Calculator_users\" where id >= 0");
+    public SaveNewUserInJDBC(){
+//        Connection connection;
+//        try {
+//            connection = DriverManager.getConnection(URL1, USER1, PASSWORD1);
+//
+//            PreparedStatement prepareStatement = connection.prepareStatement("SELECT id FROM \"Calculator_users\"");
+//            lastID = prepareStatement.getResultSet().getInt(5);
+//
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
 
-    resultSet.next();
-lastID = resultSet.getInt(1);
 
-    } catch (SQLException e) {
-        throw new RuntimeException(e);
     }
-
-}
 
 
     @Override
@@ -48,8 +62,8 @@ lastID = resultSet.getInt(1);
         try {
             Connection connection = DriverManager.getConnection(URL1, USER1, PASSWORD1);
 
-            PreparedStatement prepareStatement = connection.prepareStatement("insert into \"Calculator_users\" values (?, ?, ?, ?, ?)");
-            prepareStatement.setInt(5, calculatorUser.getUserID());
+            PreparedStatement prepareStatement = connection.prepareStatement("insert into \"Calculator_users\" values (?, ?, ?, ?, default)", Statement.RETURN_GENERATED_KEYS);
+//            prepareStatement.setInt(5, calculatorUser.getUserID());
 
             prepareStatement.setString(1, calculatorUser.getUserName());
 
@@ -58,6 +72,17 @@ lastID = resultSet.getInt(1);
             prepareStatement.setString(4, registrationDate.getFormatDateTime());
 
             prepareStatement.execute();
+
+            ResultSet resultSet = prepareStatement.getGeneratedKeys();
+//            int generatedKey = 0;
+
+            if(resultSet.next()){
+                lastID = resultSet.getInt(5);
+            }
+
+            calculatorUser.setUserID(lastID);
+
+
             prepareStatement.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -68,12 +93,16 @@ lastID = resultSet.getInt(1);
 
     @Override
     public List<CalculatorUser> addUsersInfoToArrayList() {
-        List<CalculatorUser> usersInfoFromJDBCToList = new ArrayList<>();
+//        List<CalculatorUser> usersInfoFromJDBCToList = new ArrayList<>();
+        List<CalculatorUser> usersInfoFromJDBCToList;
+
 
         try {
             Connection connection = DriverManager.getConnection(URL1, USER1, PASSWORD1);
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select * from \"Calculator_users\"");
+           usersInfoFromJDBCToList = new ArrayList<>();
+
 
             while (resultSet.next()) {
                 Integer userID = resultSet.getInt(5);
@@ -86,6 +115,7 @@ lastID = resultSet.getInt(1);
 
                 usersInfoFromJDBCToList.add(calculatorUser);
             }
+            statement.close();
 
 
             } catch(SQLException e){
@@ -97,16 +127,19 @@ lastID = resultSet.getInt(1);
     }
 
 
-    public CalculatorUser getOldUserByID(){
+    @Override
+    public CalculatorUser getOldUserByID(Integer id){
 
         try {
             Connection connection = DriverManager.getConnection(URL1, USER1, PASSWORD1);
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from \"Calculator_users\" where id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from \"Calculator_users\" where id = ?");
 
-            while (resultSet.next()) {
-                Integer userID = resultSet.getInt(5);
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
                 String userName = resultSet.getString(1);
+                Integer userID = resultSet.getInt(5);
                 String userEmail = resultSet.getString(2);
                 String userPassword = resultSet.getString(3);
                 String registrationDate = resultSet.getString(4);

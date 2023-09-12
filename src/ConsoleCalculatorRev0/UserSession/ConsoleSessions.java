@@ -2,6 +2,7 @@ package ConsoleCalculatorRev0.UserSession;
 
 import ConsoleCalculatorRev0.CalculationHistory.FileStorage.FileHistory;
 import ConsoleCalculatorRev0.CalculationHistory.History;
+import ConsoleCalculatorRev0.CalculatorUsers.SaveNewUser;
 import ConsoleCalculatorRev0.Objects.CalcOperation;
 import ConsoleCalculatorRev0.Objects.CalculatorUser;
 import ConsoleCalculatorRev0.Services.CalcUserService;
@@ -11,7 +12,12 @@ import java.io.*;
 
 public class ConsoleSessions implements Session {
     private CalculatorUser calculatorUser;
-    CalcUserService calcUserService = new CalcUserService();
+    CalcUserService calcUserService;
+
+    public ConsoleSessions(CalcUserService calcUserService){
+     this.calcUserService = calcUserService;
+    }
+
     ConsoleSessions consoleSession;
     History history;
     RegistrationDate registrationDate = new RegistrationDate();

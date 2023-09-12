@@ -8,5 +8,5 @@ import java.util.Optional;
 public interface SaveNewUser {
     void saveNewUser(CalculatorUser calculatorUser);
     List<CalculatorUser> addUsersInfoToArrayList();
-
+    CalculatorUser getOldUserByID(Integer userID);
 }

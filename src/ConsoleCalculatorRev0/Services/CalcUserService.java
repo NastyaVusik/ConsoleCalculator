@@ -1,6 +1,7 @@
 package ConsoleCalculatorRev0.Services;
 
 import ConsoleCalculatorRev0.CalculationHistory.History;
+import ConsoleCalculatorRev0.CalculatorUsers.SaveNewUser;
 import ConsoleCalculatorRev0.CalculatorUsers.SaveNewUserInJDBC;
 import ConsoleCalculatorRev0.IO.ConsoleReader;
 import ConsoleCalculatorRev0.IO.ConsoleWriter;
@@ -15,9 +16,16 @@ public class CalcUserService {
     private final ConsoleReader consoleReader = new ConsoleReader();
 //    SaveNewUserInFile saveNewUserInFile = new SaveNewUserInFile();
 
-    SaveNewUserInJDBC jdbcUserStorage = new SaveNewUserInJDBC();              //!!!!!!!!!!!!!!!!!!!!! Changed from File storage
+    SaveNewUser userStorage;              //!!!!!!!!!!!!!!!!!!!!! Changed from File storage
+    RegisterNewUserService registerNewUserService;
+
+    public CalcUserService(SaveNewUser userStorage){
+        this.userStorage = userStorage;
+        this.registerNewUserService = new RegisterNewUserService(userStorage);
+    }
+
     LoginOldUserService loginOldUserService = new LoginOldUserService();
-    RegisterNewUserService registerNewUserService = new RegisterNewUserService();
+
 
 
     public CalculatorUser signUpNewUser() {
@@ -34,7 +42,7 @@ public class CalcUserService {
     //Method for getting old user by ID
     public CalculatorUser getCalculatorUserByID(Integer userID) {
 //        return saveNewUserInFile.getOldUserByID(userID);
-        return jdbcUserStorage.getOldUserByID();                         //!!!!!!!!!!!!!!!!!!!!! Changed from File storage
+        return userStorage.getOldUserByID(userID);                         //!!!!!!!!!!!!!!!!!!!!! Changed from File storage
 
     }
 

@@ -29,6 +29,11 @@ public class SaveNewUserInList implements SaveNewUser{
         return usersInfoArrayList;
     }
 
+    @Override
+    public CalculatorUser getOldUserByID(Integer userID){
+        return null;
+    }
+
 
     public List<CalculatorUser> getUsersInfoArrayList() {
         return usersInfoArrayList;

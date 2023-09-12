@@ -44,6 +44,10 @@ public class CalculatorUser {
     }
 
     public CalculatorUser(Integer userID, String userName, String userEmail, String userPassword, String formatDateTime) {
+        this.userName = userName;
+        this.userEmail = userEmail;
+        this.userPassword = userPassword;
+        this.userID = userID;
     }
 
 
@@ -91,13 +95,6 @@ public class CalculatorUser {
     }
 
 
-//    public String getFormatDateTime() {
-//        return formatDateTime;
-//    }
-//
-//    public void setFormatDateTime(String formatDateTime) {
-//        this.formatDateTime = formatDateTime;
-//    }
 
 
     @Override

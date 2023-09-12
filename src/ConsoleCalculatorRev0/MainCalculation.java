@@ -1,5 +1,7 @@
 package ConsoleCalculatorRev0;
 
+import ConsoleCalculatorRev0.CalculatorUsers.SaveNewUser;
+import ConsoleCalculatorRev0.CalculatorUsers.SaveNewUserInJDBC;
 import ConsoleCalculatorRev0.Objects.CalculatorUser;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
@@ -18,8 +20,9 @@ public class MainCalculation {
 
 
     public static void main(String[] args) {
+        SaveNewUser saveNewUser = new SaveNewUserInJDBC();
 
-        StartApplication startApplication = new StartApplication();
+        StartApplication startApplication = new StartApplication(saveNewUser);
 
 
         //Begin and enjoy!!!
